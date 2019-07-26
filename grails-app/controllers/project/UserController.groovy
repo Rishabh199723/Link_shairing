@@ -34,6 +34,11 @@ class UserController {
 
     }
 
+    def logout(){
+        session.invalidate()
+        redirect(url:'/')
+    }
+
 
 
 

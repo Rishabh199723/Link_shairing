@@ -1,5 +1,5 @@
 <!doctype html>
-<%@ page import="rx.bootcamp.*" %>
+<%@ page import="project.*" %>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -43,7 +43,7 @@
 
                         <li><a href="" data-toggle="modal" data-target="#createtopic" ><span class="glyphicon glyphicon-comment"></span></a></li>
                         <li><a href="" data-toggle="modal" data-target="#sendinvitation" ><span class="glyphicon glyphicon-envelope"></span></a></li>
-                        <li><a href="" data-toggle="modal" ><span class="glyphicon glyphicon-link"></span></a></li>
+                        <li><a href="" data-toggle="modal" data-target="#sharelink"><span class="glyphicon glyphicon-link"></span></a></li>
                         <li><a href="" data-toggle="modal" ><span class="glyphicon glyphicon-file"></span></a></li>
 
                     </ul>
@@ -123,8 +123,54 @@
                     </div></div>
 
 
+                <div class="modal fade" id="sharelink">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" >Share Link</h4>
+                            </div>
+                            <div class="modal-body">
+                                <g:form class="form-horizontal" controller="Topic" action="topics" name="topicCreate">
+                                    <div class="form-group">
+                                        <div class="col-sm-2 control-label">Link</div>
+                                        <div class="col-sm-10">
+                                            <input type="email" name="topicName" placeholder="Topic Name"
+                                                   class="form-control col-sm-8" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-2 control-label">Description</div>
+                                        <div class="col-sm-10">
+                                          %{--  <input type="email" name="topicName" placeholder="Topic Name"
+                                                   class="form-control col-sm-8" />--}%
+                                            <textarea class="form-control col-sm-8" rows="5" id="comment" name="text"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-2 control-label">Topic</div>
+                                        <div class="col-sm-10">
+                                            <g:select name="visibility" from="${['PUBLIC' , 'PRIVATE']}"
+                                                      class="dropdown-toggle btn btn-default col-sm-8"  />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-default">Share</button>
+                                        </div>
+                                    </div>
+                                </g:form>
+
+                            </div>
+                        </div>
+                    </div></div>
+
+
                 <div class ="col-md-2">
-                    ${userdata.username}
+                  %{--  ${userdata.username}
                     <li class="fa fa-caret-down"  onclick="Show()"></li>
                     <ul class="nav nav-pills nav-stacked" id="drop" style="display:none">
                         <li style="height:20px"><a href="#">Profile</a></li>
@@ -132,12 +178,23 @@
                         <li style="height:20px"><a href="/Topic/topiclist">Topic</a></li>
                         <li style="height:20px"><a href="#">Posts</a></li>
                         <li style="height:20px"><a href="">Logout</a></li>
-                    </ul>
+                    </ul>--}%
 
-                </div>
-            </div>
+                    <div class="dropdown">
+                    <a href="" data-toggle="dropdown" >${userdata.username} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="/UserList/userlist">Users</a></li>
+                            <li><a href="/Topic/topiclist">Topic</a></li>
+                            <li><a href="#">Posts</a></li>
+                            <li><a href="/User/logout">Logout</a></li>
+                        </ul>
+                    </div>
+
         </div>
     </div>
+            <br>
+            <br>
     <div class="col-md-5">
 
         <div class="panel panel-default">
@@ -155,12 +212,12 @@
         </div>
 <br>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default" style="overflow: auto;height: 500px">
             <div class="panel-heading">Subscriptions</div>
             <div class="panel-body">
                 <g:each var="sub" in="${subs}" status="i">
                     <div class="panel-body">
-                        <a href="#">${sub.topic.name}</a>
+                        <g:link controller="topic" action="topicshow" params="[id: sub.id]">  ${sub.topic.name} </g:link>
                         <br>
                         <i>@${userdata.username}</i>
                         <br>
@@ -173,6 +230,7 @@
                                         <li>
                                             <g:form controller="subscription" action="updateSerious">
                                                 <g:field type="hidden" name="sid" value="${sub.id}"></g:field>
+                                                <g:field type="hidden" name="page" value="dashboard"></g:field>
                                                 <g:select onChange="submit()" name="seriousness" from="${['CASUAL','SERIOUS','VERY_SERIOUS']}"
                                                           value="${sub.seriousness}" />
                                             </g:form>
@@ -190,6 +248,7 @@
                         <g:else>
                             <g:form controller="subscription" action="updateSerious">
                                 <g:field type="hidden" name="sid" value="${sub.id}"></g:field>
+                                <g:field type="hidden" name="page" value="dashboard"></g:field>
                                 <g:select onChange="submit()" name="seriousness" from="${['CASUAL','SERIOUS','VERY_SERIOUS']}" value="${sub.seriousness}" />
                             </g:form>
                         </g:else>
@@ -199,7 +258,7 @@
             </div>
 
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default" style="overflow: auto;height: 500px">
             <div class="panel-heading">Top posts</div>
             <div class="panel-body">
                 <g:each var="topic" in="${toptopics}" status="i">
