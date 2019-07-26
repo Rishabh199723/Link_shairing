@@ -176,6 +176,7 @@
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
+
             </div>
         </div>
     </div>
@@ -336,7 +337,7 @@
                     <br>
                     <input type="password" class="form-control" name="password" placeholder="Password" required="true"/>
                     <label class="checkbox">
-                        <a href="">Forget Password?</a>
+                        <a href="${createLink(controller:'User',action: 'passreset')}">Forget Password?</a>
                     </label>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                 </form>

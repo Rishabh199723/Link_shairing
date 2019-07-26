@@ -11,6 +11,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <asset:stylesheet href="style.css"/>
+        <asset:javascript src="mainpage.js"/>
 
         <style>
             .topnav {
@@ -330,24 +331,24 @@
     <div class="col-md-5">
         <div class="row">
 
-                <g:form class="form-signin" url="[controller:'User',action:'Signup']">
+                <g:form class="form-signin" url="[controller:'User',action:'signup']">
                     <h2 class="form-signin-heading" style=" font-size:30px;">Login</h2>
                     <input type="text" class="form-control" name="email" placeholder="Email Address" required="true" autofocus="" />
                     <br>
                     <input type="password" class="form-control" name="password" placeholder="Password" required="true"/>
                     <label class="checkbox">
-                        <a href="">Forget Password?</a>
+                        <a href="${createLink(controller:'User',action: 'passreset')}">Forget Password?</a>
                     </label>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                 </g:form>
 
 
         </div>
-
+<br>
 
 
         <div class="row">
-            <g:form class="form-signin" id="register" url="[controller:'User',action:'index']">
+            <g:uploadForm class="form-signin" id="register" controller="User" action="index" >
                 <h2 class="form-signin-heading" style=" font-size:30px;">Register</h2>
                 <input type="text" class="form-control" name="firstname" placeholder="Firstname" required="true" autofocus="" />
                 <br>
@@ -357,14 +358,15 @@
                 <br>
                 <input type="text" class="form-control" name="username" placeholder="Username" required="true" autofocus="" />
                 <br>
-                <input type="password" class="form-control" name="password" placeholder="Password" required="true"/>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="true" onkeyup='pass();' />
                 <br>
-                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="true"/>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required="true" onkeyup='pass();'/>
+                <span id='message'></span>
                 <br>
-                <p><b>Upload Photo</b><input id="photo" type="file" accept="image/*"></p>
+                <p><b>Upload Photo</b><input id="photo" type="file" accept="image/*" name="photo"></p>
                 <br>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-            </g:form>
+            </g:uploadForm>
         </div>
 
     </div>

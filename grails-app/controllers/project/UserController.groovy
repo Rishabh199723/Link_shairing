@@ -2,13 +2,13 @@ package project
 
 
 class UserController {
-    def RegisterService
+    def registerService
 
     def index() {
 
 
-    print "inside"
-        def sign=RegisterService.serviceMethod(params)
+
+        def sign=registerService.serviceMethod(params,request)
         if(sign==1){
             render "success"
         }
@@ -18,16 +18,26 @@ class UserController {
 
     }
 
-    def Signup(){
-        println "inside"
-        def login=RegisterService.loginMethod(params)
+    def signup(){
+
+        def login=registerService.loginMethod(params)
             if(login==1){
-                render "Loggin in"
+                session.name=params.email
+                Users u=Users.findByEmail(session.name)
+                session.uname=u.username
+                redirect(controller:"Dashboard", action:"dashboard")
             }
             else
             {
                 render "Incorrect"
             }
 
+    }
+
+
+
+
+    def passreset(){
+        render "Reset password"
     }
 }

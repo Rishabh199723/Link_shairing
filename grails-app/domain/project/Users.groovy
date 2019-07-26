@@ -6,7 +6,7 @@ class Users {
     String password
     String fName
     String lName
-    Byte photo
+    String photo
     Boolean admin
     Boolean active
     Date dateCreated
@@ -17,7 +17,7 @@ class Users {
     static constraints = {
         email(unique:true,email:true)
         username(unique:true)
-        password(size:6..15, matches:"[a-zA-Z0-9]+")
+
         photo(nullable:true)
     }
 }
