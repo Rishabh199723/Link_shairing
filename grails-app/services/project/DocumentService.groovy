@@ -10,7 +10,7 @@ class DocumentService {
         String topicname=params.topic
         String description=params.description
         println"-------++++++++++++++++++++++"
-        def f = request.getFile('doc')
+        def f = request.getFile($/doc/$)
         String filename=f.getOriginalFilename()
         String loc='/home/rishabh/project/grails-app/assets/documents/' + username + filename
         File des = new File(loc)

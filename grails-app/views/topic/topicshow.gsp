@@ -276,7 +276,28 @@
                         </div>
 
                         <div class="col-md-8">${res.description}
+                        <div class="row">
+                        <div class="col-md-3">
+                            <g:if test="${res instanceof project.LinkResource}">
+                                <a  >Download</a>
+                                </div>
+                                <div class="col-md-3">
+                                <a href="${res.link}">View Full Site</a>
+                                </div></g:if>
+                            <g:else>
+                                <g:link controller="Document" action="download" params="[id:res.id , tid:subs.id]" >Download</g:link>
+                                </div>
+                                <div class="col-md-3">
+                                    <a >View Full Site</a>
+                                </div>
+                            </g:else>
 
+                            <div class="col-md-3">
+                                <a>Mark as read</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a>View post</a>
+                            </div>
                         </div>
                     </div>
                 </g:each>

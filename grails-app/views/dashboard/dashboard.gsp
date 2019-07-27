@@ -189,7 +189,7 @@
                                 <h4 class="modal-title" >Share Document</h4>
                             </div>
                             <div class="modal-body">
-                                <g:form class="form-horizontal" controller="Document" action="save" name="documentcreate">
+                                <g:form class="form-horizontal" controller="Document" action="save" name="documentcreate" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <div class="col-sm-2 control-label">Document</div>
                                         <div class="col-sm-10">
