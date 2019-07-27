@@ -29,7 +29,8 @@ class UserController {
             }
             else
             {
-                render "Incorrect"
+                flash.message="Invalid credentials"
+                redirect(url:"/")
             }
 
     }

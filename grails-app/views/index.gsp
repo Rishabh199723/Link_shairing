@@ -339,6 +339,7 @@
                     <label class="checkbox">
                         <a href="${createLink(controller:'User',action: 'passreset')}">Forget Password?</a>
                     </label>
+                    <p style="color:red;">${flash.message}</p>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                 </g:form>
 

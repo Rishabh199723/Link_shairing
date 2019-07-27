@@ -41,7 +41,7 @@
         <tbody>
             <g:each var="res" in="${result}" status="i">
                 <tr>
-                    <td>${res}</td>
+                    <td><g:link controller="search" action="send" params="[res:res]">${res}</g:link></td>
                 </tr>
             </g:each>
         </tbody>
