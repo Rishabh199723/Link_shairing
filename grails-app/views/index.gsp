@@ -349,7 +349,7 @@
 
 
         <div class="row">
-            <g:uploadForm class="form-signin" id="register" controller="User" action="index" >
+            <g:uploadForm class="form-signin" id="register" controller="User" action="index" enctype="multipart/form-data">
                 <h2 class="form-signin-heading" style=" font-size:30px;">Register</h2>
                 <input type="text" class="form-control" name="firstname" placeholder="Firstname" required="true" autofocus="" />
                 <br>

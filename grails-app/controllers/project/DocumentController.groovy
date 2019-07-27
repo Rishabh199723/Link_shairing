@@ -10,7 +10,7 @@ def documentService
         DocumentResource dr = (DocumentResource) Resources.get(id)
         //Users user = session.user
         Users user=Users.findByEmail(session.name)
-        def file=new File("/home/rishabh/Downloads/user.txt")
+        def file=new File("/home/rishabh/Downloads/${user}.txt")
         def temp = new File("/home/rishabh/project/grails-app/assets/documents/"+dr.documentpath)
         if (temp.exists()) {
             file = temp
@@ -30,8 +30,6 @@ def documentService
 
     def save()
     {
-        println "================================="
-        println params
         documentService.saveMethod(params,session.uname,request)
         redirect(controller:"Dashboard" , action:"dashboard")
 

@@ -12,9 +12,11 @@ class RegisterService {
             String email = params.email
             String username = params.username
             def dec = request.getFile('photo')
+            if(dec){
+                File file=new File( "/home/rishabh/Desktop/linkpics/${username}.jpg")
+                dec.transferTo(file)
+            }
 
-            File file=new File( "/home/rishabh/Desktop/linkpics/${username}.jpg")
-            dec.transferTo(file)
             String password = params.password
             String firstname = params.firstname
             String lastname = params.lastname

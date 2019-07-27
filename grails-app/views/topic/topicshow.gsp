@@ -296,7 +296,8 @@
                                 <a>Mark as read</a>
                             </div>
                             <div class="col-md-3">
-                                <a>View post</a>
+                                <g:link controller="Resources" action="index" params="[id:res.id]" >View post</g:link>
+
                             </div>
                         </div>
                     </div>
