@@ -246,7 +246,7 @@
                     <div class="dropdown">
                     <a href="" data-toggle="dropdown" >${userdata.username} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
+                            <li><a href="/Profile/editprofile">Profile</a></li>
                             <li><a href="/UserList/userlist">Users</a></li>
                             <li><a href="/Topic/topiclist">Topic</a></li>
                             <li><a href="#">Posts</a></li>
@@ -258,20 +258,23 @@
     </div>
             <br>
             <br>
-    <div class="col-md-5">
+    <div class="col-md-6">
 
         <div class="panel panel-default">
 
             <div class="panel-body">
-                <img src="${userdata.photo}"></img>
-                <div style="font-size:23px;"><b>${userdata.fName} &nbsp ${userdata.lName}</b>
+                <div class="row">
+                <div class="col-md-4">
+                    <img src="${userdata.photo}"></img>
+                </div>
+                <div class="col-md-8">
+                    <div style="font-size:23px;"><b>${userdata.fName} &nbsp ${userdata.lName}</b>
 
-                    <p>@${userdata.username}</p>
-                    <p>Topics:   &nbsp${topcount}  &nbsp  Subscriptions:${subcounts}</p>
-
-
-
-            </div>
+                        <p>@${userdata.username}</p>
+                        <p>Topics:   &nbsp${topcount}  &nbsp  Subscriptions:${subcounts}</p>
+                    </div>
+                </div>
+                </div>
         </div>
 <br>
         </div>
@@ -321,6 +324,8 @@
             </div>
 
         </div>
+
+
         <div class="panel panel-default" style="overflow: auto;height: 500px">
             <div class="panel-heading">Top posts</div>
             <div class="panel-body">
@@ -347,21 +352,72 @@
                 </g:each>
 
             </div>
-
-
-
-
-
         </div>
+    </div>
+
+
+            %{--RIGHT SIDE-----------------------------------}%
+    <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><div style="float:left">Inbox </div>
+
+                    <div class="input-group" style="margin-left:350px">
+                        <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
+
+                        <div class="input-group-btn">
+                            <button class="btn btn-basic" type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <g:each in="${resources}" var="res" status="i">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <asset:image src="images.jpeg" style="width:60px;height:60px"/>
+                            </div>
+
+                            <div class="col-md-8">${res.description}
+                            <div class="row">
+                            <div class="col-md-3">
+                                <g:if test="${res instanceof project.LinkResource}">
+                                    <a  >Download</a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="${res.link}">View Full Site</a>
+                                    </div></g:if>
+                                <g:else>
+                                    <g:link controller="Document" action="download" params="[id:res.id , tid:subs.id]" >Download</g:link>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a >View Full Site</a>
+                                    </div>
+                                </g:else>
+
+                                <div class="col-md-3">
+                                    <a>Mark as read</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <g:link controller="Resources" action="index" params="[id:res.id]" >View post</g:link>
+
+                                </div>
+                            </div>
+                        </div>
+                    </g:each>
+                </div>
+            </div>
 
     </div>
-    <div class="col-md-5">
 
-    </div>
+
+
+
 </div>
 
 </div>
-
+</div>
 </body>
 <script>
     function Show()

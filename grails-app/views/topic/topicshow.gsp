@@ -300,7 +300,9 @@
 
                             </div>
                         </div>
+                        <br>
                     </div>
+
                 </g:each>
             </div>
         </div>

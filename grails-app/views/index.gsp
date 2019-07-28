@@ -355,7 +355,7 @@
                 <br>
                 <input type="text" class="form-control" name="lastname" placeholder="Lastname" required="true" autofocus="" />
                 <br>
-                <input type="text" class="form-control" name="email" placeholder="Email" required="true" autofocus="" />
+                <input type="email" class="form-control" name="email" placeholder="Email" required="true" autofocus="" />
                 <br>
                 <input type="text" class="form-control" name="username" placeholder="Username" required="true" autofocus="" />
                 <br>

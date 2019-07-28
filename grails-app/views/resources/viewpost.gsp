@@ -2,6 +2,43 @@
 <%@ page import="rx.bootcamp.*" %>
 <html>
 <head>
+    <style>
+    .rate {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+    }
+    .rate:not(:checked) > input {
+        position:absolute;
+        top:-9999px;
+    }
+    .rate:not(:checked) > label {
+        float:right;
+        width:1em;
+        overflow:hidden;
+        white-space:nowrap;
+        cursor:pointer;
+        font-size:30px;
+        color:#ccc;
+    }
+    .rate:not(:checked) > label:before {
+        content: '★ ';
+    }
+    .rate > input:checked ~ label {
+        color: #ffc700;
+    }
+    .rate:not(:checked) > label:hover,
+    .rate:not(:checked) > label:hover ~ label {
+        color: #deb217;
+    }
+    .rate > input:checked + label:hover,
+    .rate > input:checked + label:hover ~ label,
+    .rate > input:checked ~ label:hover,
+    .rate > input:checked ~ label:hover ~ label,
+    .rate > label:hover ~ input:checked ~ label {
+        color: #c59b08;
+    }
+    </style>
     <meta charset="utf-8" />
            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
            <meta name="description" content="" />
@@ -102,7 +139,7 @@
              </div>
              <div class="container">
              <div class="row">
-             <div class="col-md-7">
+             <div class="col-md-6">
 
 
         <div class="panel panel-default">
@@ -112,12 +149,24 @@
                                <div class="row">
                                <div class="col-md-2">
                                <asset:image src="images.jpeg" style="width:70px;height:70px"/></div>
-                               <div class="col-md-6">
+                               <div class="col-md-4">
                                <div style="font-size:18px;"><b>${resource.createdBy.fName}&nbsp${resource.createdBy.lName}</b></div>
                                <div>@${resource.createdBy.username}</div></div>
-                               <div class="col-md-4">
+                               <div class="col-md-6">
                                <g:link controller="topic" action="topicshow" params="[id: resource.topic.subscriptions1.id.getAt(0)]">${resource.topic.name}</g:link><br>
                                ${resource.dateCreated}
+                                   <div class="rate">
+                                       <input type="radio" id="star5" name="rate" value="5" />
+                                       <label for="star5" title="text">5 stars</label>
+                                       <input type="radio" id="star4" name="rate" value="4" />
+                                       <label for="star4" title="text">4 stars</label>
+                                       <input type="radio" id="star3" name="rate" value="3" />
+                                       <label for="star3" title="text">3 stars</label>
+                                       <input type="radio" id="star2" name="rate" value="2" />
+                                       <label for="star2" title="text">2 stars</label>
+                                       <input type="radio" id="star1" name="rate" value="1" />
+                                       <label for="star1" title="text">1 star</label>
+                                   </div>
                                </div></div><br><br>
 
 
@@ -146,7 +195,39 @@
 
 
                                 </div>
-                                </div></div></div>
+                                </div></div>
+                 <div class="col-md-6">
+
+                     <div class="panel panel-default" style="overflow: auto;height: 500px">
+                         <div class="panel-heading">Top posts</div>
+                         <div class="panel-body">
+                             <g:each var="topic" in="${trending}" status="i">
+                                 <div class="panel-body">
+                                     <a href="#">${topic.name}</a>
+                                     <br>
+                                     <i>@${userdata.username}</i>
+                                     <br>
+                                     <g:if test="${tids.contains(topic.id)}">
+                                         <a href="#" >Unsubscribe</a> &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}
+                                         <br>
+                                     </g:if>
+                                     <g:else>
+                                         <a href="#" >subscribe</a> &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}
+                                         <br>
+
+                                     </g:else>
+                                  %{--<a href="#" >Unsubscribe</a> &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}
+                                  <br>--}%
+
+
+                                 </div>
+                             </g:each>
+
+                         </div>
+                     </div>
+                 </div>
+
+             </div>
 
 
 

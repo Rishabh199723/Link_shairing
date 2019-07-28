@@ -10,8 +10,7 @@ class DashboardController {
         Integer subcount=dashboardService.subscriptionCountMethod(session.name)
         List subs=dashboardService.subscriptions(session.name)
         List tids=subs.collect{it.topic.id}
-        println "tidsssssssssssssssssssssssssssssssssssssss"
-        println tids
+
         //List subslist=subs.collect{it.id}
         def topiclist= subs*.topic.collect{it.id}
         List countofsub=dashboardService.subcount(topiclist)
