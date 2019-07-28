@@ -9,6 +9,9 @@ class DashboardController {
         Integer topcount=dashboardService.topicCountMethod(session.name)
         Integer subcount=dashboardService.subscriptionCountMethod(session.name)
         List subs=dashboardService.subscriptions(session.name)
+        List tids=subs.collect{it.topic.id}
+        println "tidsssssssssssssssssssssssssssssssssssssss"
+        println tids
         //List subslist=subs.collect{it.id}
         def topiclist= subs*.topic.collect{it.id}
         List countofsub=dashboardService.subcount(topiclist)
@@ -16,7 +19,7 @@ class DashboardController {
         List<Topic> toptopic=dashboardService.toptopics()
         List<Integer> toptopicposts=dashboardService.toptopicposts()
         List<Integer> toptopicsubs=dashboardService.toptopicsubs()
-        render(view: 'dashboard',model: [userdata:user,topcount:topcount,subcounts:subcount,subs:subs,countofsubs:countofsub,countofposts:countofpost,toptopics:toptopic,toptopicpost:toptopicposts,toptopicsub:toptopicsubs])
+        render(view: 'dashboard',model: [userdata:user,tids:tids,topcount:topcount,subcounts:subcount,subs:subs,countofsubs:countofsub,countofposts:countofpost,toptopics:toptopic,toptopicpost:toptopicposts,toptopicsub:toptopicsubs])
     }
 
 

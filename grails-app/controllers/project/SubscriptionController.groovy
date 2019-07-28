@@ -15,4 +15,12 @@ def subscriptionService
         }
 
     }
+
+
+    def unsubscribe(){
+        Long id=Long.parseLong(params.id)
+        Subscription s=Subscription.findById(id)
+        s.delete(flush:true)
+        redirect(controller:"Dashboard" ,action:"dashboard")
+    }
 }
