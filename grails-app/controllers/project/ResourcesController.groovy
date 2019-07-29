@@ -14,4 +14,12 @@ class ResourcesController {
         List trending=dashboardService.toptopics()
         render(view : "viewpost" , model:[resource:res , trending:trending,userdata:user,tids:tids,toptopicsub:toptopicsubs,toptopicpost:toptopicposts])
     }
+
+    def deletepost(){
+        Resources res=Resources.findById(params.id)
+        res.delete(flush:true)
+        redirect(controller:'Dashboard',action:'dashboard')
+
+
+    }
 }

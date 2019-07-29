@@ -7,43 +7,40 @@ class UserController {
     def index() {
 
 
-
-        def sign=registerService.serviceMethod(params,request)
-        if(sign==1){
+        def sign = registerService.serviceMethod(params, request)
+        if (sign == 1) {
             render "success"
-        }
-        else{
-            render (view:'index')
+        } else {
+            render(view: 'index')
         }
 
     }
 
-    def signup(){
+    def signup() {
 
-        def login=registerService.loginMethod(params)
-            if(login==1){
-                session.name=params.email
-                Users u=Users.findByEmail(session.name)
-                session.uname=u.username
-                redirect(controller:"Dashboard", action:"dashboard")
-            }
-            else
-            {
-                flash.message="Invalid credentials"
-                redirect(url:"/")
-            }
+        def login = registerService.loginMethod(params)
+        if (login == 1) {
+            session.name = params.email
+            Users u = Users.findByEmail(session.name)
+            session.uname = u.username
+            redirect(controller: "Dashboard", action: "dashboard")
+        } else {
+            flash.message = "Invalid credentials"
+            redirect(url: "/")
+        }
 
     }
 
-    def logout(){
+    def logout() {
         session.invalidate()
-        redirect(url:'/')
+        redirect(url: '/')
     }
 
 
-
-
-    def passreset(){
+    def passreset() {
         render "Reset password"
     }
+
+
+
 }

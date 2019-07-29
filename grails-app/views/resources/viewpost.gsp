@@ -155,8 +155,9 @@
                                <div class="col-md-6">
                                <g:link controller="topic" action="topicshow" params="[id: resource.topic.subscriptions1.id.getAt(0)]">${resource.topic.name}</g:link><br>
                                ${resource.dateCreated}
-                                   <div class="rate">
-                                       <input type="radio" id="star5" name="rate" value="5" />
+                                   <div class="rate" >
+
+                                       <input type="radio" id="star5" name="rate" value="5"  />
                                        <label for="star5" title="text">5 stars</label>
                                        <input type="radio" id="star4" name="rate" value="4" />
                                        <label for="star4" title="text">4 stars</label>
@@ -166,6 +167,7 @@
                                        <label for="star2" title="text">2 stars</label>
                                        <input type="radio" id="star1" name="rate" value="1" />
                                        <label for="star1" title="text">1 star</label>
+
                                    </div>
                                </div></div><br><br>
 
@@ -176,7 +178,7 @@
                                <div class="row">
                                <div class="col-md-4"></div>
                                  <div class="col-md-2">
-                               <a>Delete</a>
+                                     <g:link controller="Resources" action="deletepost" params="[id:resource.id]">Delete post</g:link>
                                    </div>
                               <div class="col-md-2">
                               <a>Edit</a>

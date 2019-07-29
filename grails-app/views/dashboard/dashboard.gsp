@@ -268,7 +268,7 @@
                     <img src="${userdata.photo}"></img>
                 </div>
                 <div class="col-md-8">
-                    <div style="font-size:23px;"><b>${userdata.fName} &nbsp ${userdata.lName}</b>
+                    <div style="font-size:23px;"> <g:link controller="Dashboard" action="viewprofile" > ${userdata.fName} &nbsp ${userdata.lName}</g:link>
 
                         <p>@${userdata.username}</p>
                         <p>Topics:   &nbsp${topcount}  &nbsp  Subscriptions:${subcounts}</p>
@@ -287,7 +287,7 @@
                         <br>
                         <i>@${userdata.username}</i>
                         <br>
-                        <g:link controller="Subscription" action="unsubscribe" params="[id: sub.id]">  Unsubscribe </g:link> &nbsp &nbsp &nbspSubscription: &nbsp ${countofsubs.get(i)} &nbsp &nbsp Posts:${countofposts.get(i)}
+                        <g:link controller="Subscription" action="unsubscribe" params="[id:sub.id, page:"dashboard"]">  Unsubscribe </g:link> &nbsp &nbsp &nbspSubscription: &nbsp ${countofsubs.get(i)} &nbsp &nbsp Posts:${countofposts.get(i)}
                         <br>
                         <g:if test  = "${sub.topic.createdBy.username==session.uname}" >
                             <div class="row">
@@ -336,11 +336,11 @@
                         <i>@${userdata.username}</i>
                         <br>
                         <g:if test="${tids.contains(topic.id)}">
-                            <a href="#" >Unsubscribe</a> &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}
+                            <g:link controller="Subscription" action="unsubscribe" params="[id: topic.id,page:"dashboard"]">  Unsubscribe </g:link> &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}
                             <br>
                         </g:if>
                         <g:else>
-                            <a href="#" >subscribe</a> &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}
+                            <g:link controller="Subscription" action="subscribe" params="[id: topic.id,page:"dashboard"]">  Subscribe </g:link> &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}
                             <br>
 
                         </g:else>
