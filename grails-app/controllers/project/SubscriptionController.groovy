@@ -3,8 +3,7 @@ package project
 class SubscriptionController {
 def subscriptionService
     def updateSerious() {
-        println"+++++++++++++++++++++++++++++++++++++++++"
-        println params
+
         subscriptionService.seriousness(params)
 
         if(params.page=="dashboard"){
@@ -18,21 +17,24 @@ def subscriptionService
 
 
     def unsubscribe(params){
-        println"======================"
+
         println params.id
         Long sid = 0.0
         Users user=Users.findByEmail(session.name)
-        if(params.id instanceof project.Subscription) {
+        Subscription su=Subscription.findById(params.id)
+        if(su instanceof project.Subscription) {
              sid = Long.parseLong(params.id)
         }
         else
         {
             Long topid = Long.parseLong(params.id)
 
+            println topid
             Subscription sub = Subscription.createCriteria().get {
                 eq('topic.id', topid)
                 eq('user.id', user.id)
             }
+            println sub
             sid = sub.id
         }
         Subscription s=Subscription.findById(sid)
@@ -49,12 +51,12 @@ def subscriptionService
     def subscribe(params){
         Users user=Users.findByEmail(session.name)
         Long topid = Long.parseLong(params.id)
+        Topic t=Topic.get(topid)
 
-        Subscription sub = Subscription.createCriteria().get {
-            eq('topic.id', topid)
-            eq('user.id', user.id)
-        }
-        sid = sub.id
-        
+        Subscription s=new Subscription(seriousness: "CASUAL" ,topic :t)
+        user.addToSubscribed(s)
+        s.save(flush:true,failOnError:true)
+        user.save(flush:true,failOnError:true)
+        redirect(controller:"Dashboard" ,action:"dashboard")
     }
 }

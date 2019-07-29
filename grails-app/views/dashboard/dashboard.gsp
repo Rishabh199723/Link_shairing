@@ -17,6 +17,7 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <div class="container"><br>
@@ -331,7 +332,7 @@
             <div class="panel-body">
                 <g:each var="topic" in="${toptopics}" status="i">
                     <div class="panel-body">
-                        <a href="#">${topic.name}</a>
+                        <g:link controller="topic" action="topicshow" params="[id: topic.id]">  ${topic.name} </g:link>
                         <br>
                         <i>@${userdata.username}</i>
                         <br>

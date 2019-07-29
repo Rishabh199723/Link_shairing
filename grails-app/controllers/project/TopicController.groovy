@@ -8,7 +8,9 @@ class TopicController {
     def index() {}
 
     def topics() {
+        println "IN TOPIC ==============================="
         topicService.serviceMethod(session.name, params)
+
         redirect(controller: "Dashboard", action: "dashboard")
     }
 
@@ -25,11 +27,20 @@ class TopicController {
 
     def topicshow() {
         Users user=Users.findByEmail(session.name)
-
+    Long tid=0.0
         Long id = Long.parseLong(params.id)
         Subscription sub = Subscription.get(id)
-        Topic t = sub.topic
-        Long tid = t.id
+        println "+++++++++++++++++++++++++++++"
+        println sub
+        println "+++++++++++++++++++++++++++++"
+        if(sub){
+            Topic t = sub.topic
+            tid = t.id
+
+        }
+        else{
+            tid=id
+        }
 
 
         Long subscount = Subscription.createCriteria().count {
