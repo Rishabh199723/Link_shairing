@@ -192,7 +192,7 @@
                     <div class="container" id="fullresponsive" >
                         <div class="row">
                             <div class="col-md-3" style="padding:6px">
-                                <asset:image src="a.jpg" height="150px" width="100%" />
+                                <asset:image src="rishabh.jpg" height="150px" width="100%" />
                             </div>
                             <div class="col-md-9">
                                 <div class="row">

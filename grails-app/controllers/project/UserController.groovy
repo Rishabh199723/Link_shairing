@@ -17,17 +17,28 @@ class UserController {
     }
 
     def signup() {
-
         def login = registerService.loginMethod(params)
-        if (login == 1) {
-            session.name = params.email
-            Users u = Users.findByEmail(session.name)
-            session.uname = u.username
-            redirect(controller: "Dashboard", action: "dashboard")
-        } else {
-            flash.message = "Invalid credentials"
-            redirect(url: "/")
-        }
+
+
+            if (login) {
+                if(login.active==true){
+                    session.name = params.email
+                    session.uname = login.username
+                    redirect(controller: "Dashboard", action: "dashboard")
+
+                }
+                else{
+                    flash.message="User Deactivated"
+                    redirect(url: "/")
+                }
+
+            } else {
+
+                flash.message = "Invalid credentials"
+                redirect(url: "/")
+            }
+
+
 
     }
 

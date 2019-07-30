@@ -19,11 +19,13 @@ class DocumentService {
         f.transferTo(des)
         String url=username+filename
         DocumentResource dr=new DocumentResource(documentpath: url , description:description)
+        Reading_Item r1=new Reading_Item(resource: dr,user:user,isRead:false)
         user.addToResources1(dr)
         topic.addToResources2(dr)
         user.save()
         topic.save()
         dr.save()
+        r1.save(flush:true,failOnError:true)
 
 
 

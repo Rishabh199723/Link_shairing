@@ -195,7 +195,16 @@
 
                 <div class="row">
                     <div class="col-md-5">
-                        <a>Unsubscribe</a></div>
+                        <g:if test="${tids.contains(subs.topic.id)}">
+                            <g:link controller="Subscription" action="unsubscribe" params="[id: subs.topic.id,page:"dashboard"]">  Unsubscribe </g:link>
+                            <br>
+                        </g:if>
+                        <g:else>
+                            <g:link controller="Subscription" action="subscribe" params="[id: subs.topic.id,page:"dashboard"]">  Subscribe </g:link>
+                            <br>
+
+                        </g:else>
+                    </div>
 
                     <div class="col-md-7">
                         <g:form controller="subscription" action="updateSerious">
@@ -218,6 +227,7 @@
             </div>
 
             <div class="panel-body">
+
                 <g:each in="${subscription}" var="us" status="i">
 
                     <div class="row">
@@ -239,7 +249,8 @@
                                 Topics:
                                 <div><a>${postscount.getAt(i)}</a></div></div>
 
-                            <a>Unsubscribe</a></div></div>
+
+                        </div></div>
                     <br>
 
                 </g:each>
@@ -293,7 +304,8 @@
                             </g:else>
 
                             <div class="col-md-3">
-                                <a>Mark as read</a>
+                                <g:link controller="Reading" action="editread" params="[id:res.id]" >Mark as read</g:link>
+
                             </div>
                             <div class="col-md-3">
                                 <g:link controller="Resources" action="index" params="[id:res.id]" >View post</g:link>

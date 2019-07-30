@@ -4,7 +4,7 @@ class TopicController {
     static defaultAction = "topics"
     def topicService
     def topiclistService
-
+    def dashboardService
     def index() {}
 
     def topics() {
@@ -27,21 +27,21 @@ class TopicController {
 
     def topicshow() {
         Users user=Users.findByEmail(session.name)
-    Long tid=0.0
+        List subs=dashboardService.subscriptions(session.name)
+        List tids=subs.collect{it.topic.id}
+        Long tid=0.0
         Long id = Long.parseLong(params.id)
         Subscription sub = Subscription.get(id)
-        println "+++++++++++++++++++++++++++++"
-        println sub
-        println "+++++++++++++++++++++++++++++"
-        if(sub){
-            Topic t = sub.topic
-            tid = t.id
+
+        if(sub==null){
+          sub=Subscription.createCriteria().get{
+              eq('topic.id',id)
+              eq('user.id',user.id)
+          }
 
         }
-        else{
-            tid=id
-        }
 
+        tid=sub.topic.id
 
         Long subscount = Subscription.createCriteria().count {
             eq("topic.id", tid)
@@ -65,6 +65,7 @@ class TopicController {
             eq("topic.id", tid)
         }
         println "------------------------"
-        render(view:"topicshow" ,model : [user:user,subs:sub , subscount:subscount , postcount : postcount , subscription:subscription,subscriptioncount:subscriptioncount , postscount:postscount,resources:resource])
+
+        render(view:"topicshow" ,model : [user:user,tids:tids,subs:sub , subscount:subscount , postcount : postcount , subscription:subscription,subscriptioncount:subscriptioncount , postscount:postscount,resources:resource])
     }
 }

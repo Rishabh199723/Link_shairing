@@ -7,4 +7,19 @@ class UserListController {
     def list=UserListService.serviceMethod()
         render(view:"userlist",model:[lists:list])
     }
+
+    def changePermission()
+    {
+
+        Long userId = Long.parseLong(params.id)
+        //println(userId)
+        userListService.updatePermission(userId)
+        redirect controller: 'UserList', action: 'userlist'
+    }
+    def changeAdmin()
+    {
+        Long userId = Long.parseLong(params.id)
+        userListService.updateAdmin(userId)
+        redirect controller:'UserList' ,action:'userlist'
+    }
 }

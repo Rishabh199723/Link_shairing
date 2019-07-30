@@ -12,11 +12,14 @@ class LinkService {
         Topic topic=Topic.findByName(topicname)
         Users user=Users.findByUsername(username)
         LinkResource lr=new LinkResource(link: url , description:description )
+        Reading_Item r1=new Reading_Item(resource: lr,user:user,isRead:false)
         user.addToResources1(lr)
         topic.addToResources2(lr)
+        user.addToReadItems1(r1)
         user.save()
         topic.save()
         lr.save()
+        r1.save(flush:true,failOnError:true)
 
     }
 }

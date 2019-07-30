@@ -96,7 +96,8 @@
                 <th>FirstName</th>
                 <th>LastName</th>
                 <th>Active</th>
-                <th>Manage</th>
+                <th >Manage Active</th>
+                <th>Manage Activate</th>
             </tr>
             </thead>
             <tbody>
@@ -108,7 +109,18 @@
                     <td>${user.fName}</td>
                     <td>${user.lName}</td>
                     <td>${user.active}</td>
-                    <td><button id="activate"></button></td>
+                    <td><g:if test  = "${user.active == true}" >
+                        <g:link controller='UserList' action='changePermission' params="[id:user.id]">Deactivate</g:link>
+                    </g:if>
+                        <g:else>
+                            <g:link controller='UserList' action='changePermission' params="[id:user.id]">Activate</g:link>
+                        </g:else></td>
+                    <td><g:if test  = "${user.admin == true}" >
+                        <g:link controller='UserList' action='changeAdmin' params="[id:user.id]">Remove Admin</g:link>
+                    </g:if>
+                        <g:else>
+                            <g:link controller='UserList' action='changeAdmin' params="[id:user.id]">Make Admin</g:link>
+                        </g:else></td>
                 </tr>
             </g:each>
             </tbody>

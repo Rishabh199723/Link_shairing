@@ -20,6 +20,10 @@ class ResourcesController {
         res.delete(flush:true)
         redirect(controller:'Dashboard',action:'dashboard')
 
+    }
 
+    def postlist(){
+        List resources=Resources.list()
+        render(view:'postlist',model:[list:resources])
     }
 }
