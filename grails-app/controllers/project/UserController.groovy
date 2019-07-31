@@ -3,6 +3,7 @@ package project
 
 class UserController {
     def registerService
+    def mailService
 
     def index() {
 
@@ -49,7 +50,29 @@ class UserController {
 
 
     def passreset() {
-        render "Reset password"
+        println "+++++++++]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]"
+        println params.email
+        Users user=Users.findByEmail(params.email)
+        println user.email
+        String link=createLink(controller:'User' ,action:'resetpass' ,params:[email:user.email],absolute: true)
+         mailService.sendMail( {
+            to "${user.email}"
+            subject "Hello .Change password link "
+            text link
+        })
+    }
+
+    def resetpass(){
+
+        render(view:'password',model:[email:params.email])
+    }
+
+    def changepassword(){
+        Users user=Users.findByEmail(params.email)
+        user.password=params.password
+        user.save(flush:true)
+        flash.message="Password changed "
+        redirect(url:"/")
     }
 
 

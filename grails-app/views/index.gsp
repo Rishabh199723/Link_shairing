@@ -12,6 +12,10 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <asset:stylesheet href="style.css"/>
         <asset:javascript src="mainpage.js"/>
+        <g:javascript>
+            var resetPasswordUrl = "${createLink(controller: 'user', action: 'passreset')}";
+        </g:javascript>
+
     <script type="text/javascript" >
         function preventBack(){window.history.forward();}
         setTimeout("preventBack()", 0);
@@ -25,8 +29,6 @@
       height: 53px;
 
     }
-
-
 
     .topnav a {
       float: left;
@@ -338,12 +340,13 @@
 
                 <g:form class="form-signin" url="[controller:'User',action:'signup']">
                     <h2 class="form-signin-heading" style=" font-size:30px;">Login</h2>
-                    <input type="text" class="form-control" name="email" placeholder="Email Address" required="true" autofocus="" />
+                    <input type="text" class="form-control" id="e" name="email" placeholder="Email Address" required="true" autofocus="" />
                     <br>
                     <input type="password" class="form-control" name="password" placeholder="Password" required="true"/>
                     <label class="checkbox">
-                        <a href="${createLink(controller:'User',action: 'passreset')}">Forget Password?</a>
+                        <a href="#" onclick="changepass()">Forgot Password?</a>
                     </label>
+                    <p id="test"></p>
                     <p style="color:red;">${flash.message}</p>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                 </g:form>
@@ -378,6 +381,20 @@
     </div>
     </div>
 </div>
+<script>
+    function changepass(){
+        var email=$('#e').val();
+        console.log(email, resetPasswordUrl);
+        $.ajax({
+            "url": resetPasswordUrl,
+            "type": "get",
+            "data": {email: email},
+            success: function(){
+                document.getElementById("test").innerHTML="SUCCESS"
+            }
+        });
 
+    }
+</script>
 </body>
 </html>
