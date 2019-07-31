@@ -297,7 +297,14 @@
                         <br>
                         <i>@${userdata.username}</i>
                         <br>
+                    <g:if test  = "${sub.topic.createdBy.username==session.uname}" >
+
+                        Subscription : &nbsp ${countofsubs.get(i)} &nbsp &nbsp Posts:${countofposts.get(i)}
+
+                    </g:if>
+                    <g:else>
                         <g:link controller="Subscription" action="unsubscribe" params="[id:sub.id, page:"dashboard"]">  Unsubscribe </g:link> &nbsp &nbsp &nbspSubscription: &nbsp ${countofsubs.get(i)} &nbsp &nbsp Posts:${countofposts.get(i)}
+                    </g:else>
                         <br>
                         <g:if test  = "${sub.topic.createdBy.username==session.uname}" >
                             <div class="row">

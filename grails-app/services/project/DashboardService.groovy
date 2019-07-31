@@ -79,7 +79,44 @@ class DashboardService {
 
 
     def toptopics(){
+
         List <Long> topicsid=Topic.list().collect{
+            it.id
+        }
+        //print topicsid
+        List abcd=Resources.createCriteria().list(max:5)
+                {
+                    projections{
+                        count('topic.id')
+                        groupProperty('topic.id')
+                        // countDistinct('topic.id')
+                    }
+                    //order()
+                }
+        println abcd
+        abcd.sort{b,a-> a.getAt(0)<=>b.getAt(0)}
+        println"abcd"+ abcd
+        List xyz=abcd.collect{ x ->
+            topicsid.find{
+                if (x.getAt(1)==it)
+                    return x.getAt(1)
+                else
+                    return 0
+            }
+        }
+        println"xyz"+ xyz
+        xyz.removeAll{it==0}
+        List bbb= xyz+(topicsid-xyz)
+        println"bbb"+ bbb
+        List<Topic> topicList=[]
+        def i
+        for(i=0;i<5;i++)
+            topicList.add(Topic.get(bbb[i]))
+        println "trend"+topicList
+        return topicList
+
+
+       /* List <Long> topicsid=Topic.list().collect{
             it.id
         }
 
@@ -119,67 +156,65 @@ class DashboardService {
         for(i=0;i<5;i++)
             topicList.add(topicList1[i])
 
-        return topicList
+        return topicList*/
     }
 
-    def toptopicposts(){
-        List<Long> topicsid = Topic.list().collect {
-            it.id
-        }
-        List abcd = Resources.createCriteria().list(max: 5)
+    def toptopicposts(trending){
+        List abcd = Resources.createCriteria().list()
                 {
                     projections {
                         count('topic.id')
                         groupProperty('topic.id')
+                        // countDistinct('topic.id')
                     }
+                    //order()
                 }
-
+        println "abcd"+abcd
         abcd.sort { b, a -> a.getAt(0) <=> b.getAt(0) }
-        List<Integer> xyz = topicsid.collect { x ->
+        println "abcd is this>>>>>>>>>>>>>>>>>>>>>>>"+abcd
+        println "trending is this>>>>>>>>>>>>>>>>>>>"+trending
+        List xyz = trending.collect { x ->
             abcd.find {
-                if (it.getAt(1) == x)
+                if (it.getAt(1) == x.id)
                     return it.getAt(0)
                 else
                     return 0
             }
-        }.collect {
-            if (!it)
-                return 0
-            else
-                it.getAt(0)
         }
-
-        return xyz
-
+        List resultCount = xyz.collect{if(!it)
+            return 0
+        else
+            it.getAt(0)
+        }
+        println "top posts"+resultCount
+        return resultCount
     }
 
-    def toptopicsubs(){
-        List<Long> topicsid = Topic.list().collect {
-            it.id
-        }
+    def toptopicsubs(trending){
         def topiccounts = Subscription.createCriteria().list()
                 {
                     projections {
                         count('topic.id')
                         groupProperty('topic.id')
                     }
-                    'topic' {
-                        inList('id', topicsid)
-                    }
                 }
-        println topicsid
+        topiccounts.sort { b, a -> a.getAt(0) <=> b.getAt(0) }
         println topiccounts
-        List<Integer> counts = topicsid.collect { x ->
+        List xyz = trending.collect { x ->
             topiccounts.find {
-                if (it.getAt(1) == x)
+                if (it.getAt(1) == x.id)
                     return it.getAt(0)
+                else
+                    return 0
             }
-        }.collect {  if (!it)
+        }
+        List resultCount = xyz.collect{if(!it)
             return 0
         else
-            it.getAt(0) }
-        println counts
-        return counts
+            it.getAt(0)
+        }
+        println "println topsubs"+resultCount
+        return resultCount
     }
 
 

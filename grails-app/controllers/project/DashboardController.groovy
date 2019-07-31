@@ -12,8 +12,8 @@ class DashboardController {
         List subs=dashboardService.subscriptions(session.name)
         if(!subs){
             List<Topic> toptopic=dashboardService.toptopics()
-            List<Integer> toptopicposts=dashboardService.toptopicposts()
-            List<Integer> toptopicsubs=dashboardService.toptopicsubs()
+            List<Integer> toptopicposts=dashboardService.toptopicposts(toptopic)
+            List<Integer> toptopicsubs=dashboardService.toptopicsubs(toptopic)
             render(view: 'dashboard',model: [userdata:user,tids:[],topcount:topcount,subcounts:subcount,subs:[],countofsubs:[],countofposts:[],toptopics:toptopic,toptopicpost:toptopicposts,toptopicsub:toptopicsubs,resources:[]])
 
         }
@@ -23,8 +23,8 @@ class DashboardController {
             List countofsub=dashboardService.subcount(topiclist)
             List countofpost=dashboardService.countposts(topiclist)
             List<Topic> toptopic=dashboardService.toptopics()
-            List<Integer> toptopicposts=dashboardService.toptopicposts()
-            List<Integer> toptopicsubs=dashboardService.toptopicsubs()
+            List<Integer> toptopicposts=dashboardService.toptopicposts(toptopic)
+            List<Integer> toptopicsubs=dashboardService.toptopicsubs(toptopic)
             List resources=readingService.displayunread(session.uname)
             render(view: 'dashboard',model: [userdata:user,tids:tids,topcount:topcount,subcounts:subcount,subs:subs,countofsubs:countofsub,countofposts:countofpost,toptopics:toptopic,toptopicpost:toptopicposts,toptopicsub:toptopicsubs,resources:resources])
 

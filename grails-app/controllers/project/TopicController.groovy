@@ -66,12 +66,20 @@ class TopicController {
         }
 
         List resourcelist=resource.collect{it.id}
-        List read=Reading_Item.createCriteria().list{
-            inList("resource.id",resourcelist)
-            eq("user.id",user.id)
-        }
-        println "------------------------"
+        if(!resourcelist){
+            render(view:"topicshow" ,model : [user:user,tids:tids,subs:sub , subscount:subscount , postcount : postcount , subscription:subscription,subscriptioncount:subscriptioncount , postscount:postscount,resources:resource])
 
-        render(view:"topicshow" ,model : [user:user,tids:tids,subs:sub , subscount:subscount , postcount : postcount , subscription:subscription,subscriptioncount:subscriptioncount , postscount:postscount,resources:resource])
+        }
+        else{
+            List read=Reading_Item.createCriteria().list{
+                inList("resource.id",resourcelist)
+                eq("user.id",user.id)
+            }
+            println "------------------------"
+
+            render(view:"topicshow" ,model : [user:user,tids:tids,subs:sub , subscount:subscount , postcount : postcount , subscription:subscription,subscriptioncount:subscriptioncount , postscount:postscount,resources:resource])
+
+        }
+
     }
 }
