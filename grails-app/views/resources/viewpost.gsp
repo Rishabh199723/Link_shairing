@@ -2,7 +2,7 @@
 <%@ page import="rx.bootcamp.*" %>
 <html>
 <head>
-    <style>
+   %{-- <style>
     .rate {
         float: left;
         height: 46px;
@@ -38,7 +38,7 @@
     .rate > label:hover ~ input:checked ~ label {
         color: #c59b08;
     }
-    </style>
+    </style>--}%
     <meta charset="utf-8" />
            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
            <meta name="description" content="" />
@@ -55,7 +55,7 @@
        	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body onload="Ratingsprint('${rating}')">
 <div class="container"><br>
        <div class="panel panel-default" style="height:70px">
          <div class="panel-body">
@@ -155,8 +155,8 @@
                                <div class="col-md-6">
                                <g:link controller="topic" action="topicshow" params="[id: resource.topic.subscriptions1.id.getAt(0)]">${resource.topic.name}</g:link><br>
                                ${resource.dateCreated}
-                                   <div class="rate" >
-                                        
+                                 %{--  <div class="rate" >
+
                                        <input type="radio" id="star5" name="rate" value="5"  />
                                        <label for="star5" title="text">5 stars</label>
                                        <input type="radio" id="star4" name="rate" value="4" />
@@ -168,12 +168,23 @@
                                        <input type="radio" id="star1" name="rate" value="1" />
                                        <label for="star1" title="text">1 star</label>
 
-                                   </div>
+                                   </div>--}%
                                </div></div><br><br>
+                                    <div class="row">
+                                   <div class="col-md-9"> ${resource.description}<br><br><br>
+                                   </div>
+                                   <div class="col-md-3">
+
+                                       <span id="1" onclick="Rating('${session.uname}' , '${resource.id}' , '${1}')"class="glyphicon glyphicon-star"></span>
+                                       <span id="2" onclick="Rating('${session.uname}' , '${resource.id}' , '${2}')"class="glyphicon glyphicon-star"></span>
+                                       <span id="3" onclick="Rating('${session.uname}' , '${resource.id}' , '${3}')"class="glyphicon glyphicon-star"></span>
+                                       <span id="4" onclick="Rating('${session.uname}' , '${resource.id}' , '${4}')"class="glyphicon glyphicon-star"></span>
+                                       <span id="5" onclick="Rating('${session.uname}' , '${resource.id}' , '${5}')"class="glyphicon glyphicon-star"></span>
 
 
+                                   </div></div><br><br><br>
+                                   <p id="test"></p>
 
-                               ${resource.description}<br><br><br>
 
                                <div class="row">
                                <div class="col-md-4"></div>
@@ -230,8 +241,50 @@
                  </div>
 
              </div>
+             </div>
+</div>
+<script>
+    function Rating(username , resourceId , value)
+    {
+
+        for(var i=1;i<=5;i++)
+        {
+            document.getElementById(i).style.color="black";
+        }
+
+        for(var i=1;i<=value;i++)
+        {
+            document.getElementById(i).style.color="orange";
+        }
+
+        url="${createLink(controller:'Rating',action:'save')}"
 
 
+        $.ajax({
+            "url":     url,
+            "type":    "get",
+            "data":    {username : username , resourceId : resourceId , value : value},
+            success: function(){
+                document.getElementById("test").innerHTML="SUCCESS"
+            }
+        });
+
+    }
+    function Ratingsprint(value)
+    {
+        for(var i=1;i<=5;i++)
+        {
+            document.getElementById(i).style.color="black";
+        }
+
+        for(var i=1;i<=value;i++)
+        {
+            document.getElementById(i).style.color="orange";
+        }
+    }
+</script>
+</body>
+</html>
 
 
 

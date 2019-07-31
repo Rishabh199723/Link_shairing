@@ -9,7 +9,7 @@ class UserController {
 
         def sign = registerService.serviceMethod(params, request)
         if (sign == 1) {
-            render "success"
+            redirect(url: "/")
         } else {
             render(view: 'index')
         }

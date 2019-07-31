@@ -304,6 +304,7 @@
                             </g:else>
 
                             <div class="col-md-3">
+
                                 <g:link controller="Reading" action="editread" params="[id:res.id]" >Mark as read</g:link>
 
                             </div>

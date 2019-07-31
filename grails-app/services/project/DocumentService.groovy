@@ -19,13 +19,22 @@ class DocumentService {
         f.transferTo(des)
         String url=username+filename
         DocumentResource dr=new DocumentResource(documentpath: url , description:description)
-        Reading_Item r1=new Reading_Item(resource: dr,user:user,isRead:false)
+        List userlist=Subscription.createCriteria().list{
+            eq('topic.id',topic.id)
+            ne('user.id',user.id)
+        }.collect{it.user}
+        Reading_Item r1=new Reading_Item(resource: dr,user:user,isRead:true)
         user.addToResources1(dr)
         topic.addToResources2(dr)
         user.save()
         topic.save()
         dr.save()
         r1.save(flush:true,failOnError:true)
+        userlist.each{user1->
+            Reading_Item r=new Reading_Item(resource: lr,user:user1,isRead:false)
+            r.save(flush:true)
+            user1.save(flush:true)
+        }
 
 
 

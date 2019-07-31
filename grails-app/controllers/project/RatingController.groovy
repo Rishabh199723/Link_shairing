@@ -1,9 +1,8 @@
 package project
 
 class RatingController {
-
-    def updaterating() {
-        println "REACHED"
-        render "hi"
+    def ratingService
+    def save() {
+        ratingService.saveMethod(params)
     }
 }

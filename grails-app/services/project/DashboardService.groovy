@@ -85,7 +85,6 @@ class DashboardService {
 
         List abcd=Resources.createCriteria().list(max:5)
                 {
-                    //alias topic t
                     projections{
                         groupProperty('topic.id')
                         count('topic.id')
@@ -93,9 +92,7 @@ class DashboardService {
                     }
 
                 }
-        println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.."
-println abcd
-        println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.."
+
         abcd.sort{b,a-> a.getAt(0)<=>b.getAt(0)}
         List <Integer> xyz=topicsid.collect{ x ->
             abcd.find{
