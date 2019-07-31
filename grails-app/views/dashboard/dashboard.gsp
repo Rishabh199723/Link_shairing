@@ -295,7 +295,7 @@
                     <div class="panel-body">
                         <g:link controller="topic" action="topicshow" params="[id: sub.id]">  ${sub.topic.name} </g:link>
                         <br>
-                        <i>@${userdata.username}</i>
+                        <i>@${sub.topic.createdBy.username}</i>
                         <br>
                     <g:if test  = "${sub.topic.createdBy.username==session.uname}" >
 
@@ -350,7 +350,7 @@
                     <div class="panel-body">
                         <g:link controller="topic" action="topicshow" params="[id: topic.id]">  ${topic.name} </g:link>
                         <br>
-                        <i>@${userdata.username}</i>
+                        <i>@${topic.createdBy.username}</i>
                         <br>
                         <g:if test="${tids.contains(topic.id)}">
                             <g:link controller="Subscription" action="unsubscribe" params="[id: topic.id,page:"dashboard"]">  Unsubscribe </g:link> &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}

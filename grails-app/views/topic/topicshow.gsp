@@ -303,11 +303,16 @@
                                 </div>
                             </g:else>
 
-                            <div class="col-md-3">
 
-                                <g:link controller="Reading" action="editread" params="[id:res.id]" >Mark as read</g:link>
+                                <g:if test="${read.getAt(i).resource.id==res.id}">
+                                    <g:if test="${read.isRead==false}">
+                                        <div class="col-md-3">
+                                        <g:link controller="Reading" action="editread" params="[id:res.id]" >Mark as read</g:link>
+                                        </div>
+                                    </g:if>
+                                </g:if>
 
-                            </div>
+
                             <div class="col-md-3">
                                 <g:link controller="Resources" action="index" params="[id:res.id]" >View post</g:link>
 

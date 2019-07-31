@@ -5,9 +5,14 @@ class ProfileController {
     def profileService
     def editprofile() {
         Users user = Users.findByEmail(session.name)
+        List subs=dashboardService.subscriptions(session.name)
         Integer topcount=dashboardService.topicCountMethod(session.name)
         Integer subcount=dashboardService.subscriptionCountMethod(session.name)
-        render(view:'profileedit',model: [userdata:user,topcount:topcount,subcounts:subcount])
+        List tids=subs.collect{it.topic.id}
+        def topiclist= subs*.topic.collect{it.id}
+        List countofsub=dashboardService.subcount(topiclist)
+        List countofpost=dashboardService.countposts(topiclist)
+        render(view:'profileedit',model: [userdata:user,topcount:topcount,subcounts:subcount,subs:subs,countofsubs:countofsub,countofposts:countofpost])
     }
 
     def profile(params,request){

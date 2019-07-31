@@ -16,6 +16,7 @@ class SearchService {
         List<String> topicResults = Topic.createCriteria().list{
 
             ilike("name","%${entry}%")
+            eq('visibility',Visibility.PUBLIC)
 
         }.collect{it.name}
         List<String> resourceResults = Resources.createCriteria().list{

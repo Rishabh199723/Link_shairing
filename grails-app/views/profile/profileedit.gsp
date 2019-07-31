@@ -93,15 +93,16 @@
                 <div class="panel panel-default" style="overflow: auto;height: 500px">
                     <div class="panel-heading">Topics</div>
                     <div class="panel-body">
-                       %{-- <g:each var="sub" in="${subs}" status="i">
+                        <g:each var="sub" in="${subs}" status="i">
                             <div class="panel-body">
-                                <g:link controller="topic" action="topicshow" params="[id: sub.id]">  ${sub.topic.name} </g:link>
+                                <g:if test  = "${sub.topic.createdBy.username==session.uname}" >
+                                    <g:link controller="topic" action="topicshow" params="[id: sub.id]">  ${sub.topic.name} </g:link>
                                 <br>
                                 <i>@${userdata.username}</i>
                                 <br>
                                 <g:link controller="Subscription" action="unsubscribe" params="[id: sub.id]">  Unsubscribe </g:link> &nbsp &nbsp &nbspSubscription: &nbsp ${countofsubs.get(i)} &nbsp &nbsp Posts:${countofposts.get(i)}
                                 <br>
-                                <g:if test  = "${sub.topic.createdBy.username==session.uname}" >
+
                                     <div class="row">
                                         <div class="col-md-12">
                                             <ul class="list-inline">
@@ -123,16 +124,10 @@
                                         </div>
                                     </div>
                                 </g:if>
-                                <g:else>
-                                    <g:form controller="subscription" action="updateSerious">
-                                        <g:field type="hidden" name="sid" value="${sub.id}"></g:field>
-                                        <g:field type="hidden" name="page" value="dashboard"></g:field>
-                                        <g:select onChange="submit()" name="seriousness" from="${['CASUAL','SERIOUS','VERY_SERIOUS']}" value="${sub.seriousness}" />
-                                    </g:form>
-                                </g:else>
+
 
                             </div>
-                        </g:each>--}%
+                        </g:each>
                     </div>
 
                 </div>
