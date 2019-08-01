@@ -20,7 +20,7 @@ class RatingService {
         if(resRate)
         {
             resRate.score=rating
-            resRate.save()
+            resRate.save(flush:true)
         }
         else{
             Resource_Rating resourceRate = new Resource_Rating(rating:rating)

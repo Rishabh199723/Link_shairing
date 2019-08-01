@@ -12,7 +12,8 @@ class RegisterService {
             String email = params.email
             String username = params.username
             def dec = request.getFile('photo')
-            if(dec){
+            def ph=dec.getOriginalFilename()
+            if(ph){
                 File file=new File( "/home/rishabh/project/grails-app/assets/images/${username}.jpg")
                 dec.transferTo(file)
             }
@@ -21,7 +22,15 @@ class RegisterService {
             String firstname = params.firstname
             String lastname = params.lastname
             String confirm = params.confirm_password
-            String photo1 = "${username}.jpg"
+            String photo1=""
+            if(ph){
+                 photo1 = "${username}.jpg"
+
+            }
+            else
+            {
+                 photo1="default.jpg"
+            }
             Users user = new Users(email: email, username: username, password: password, fName: firstname, lName: lastname, admin: false, active: true,photo:photo1)
             user.save(flush: true, failOnError: true, validate: false)
             return 1

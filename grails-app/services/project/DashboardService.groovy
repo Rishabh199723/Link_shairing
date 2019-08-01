@@ -46,6 +46,7 @@ class DashboardService {
                     return it.getAt(0)
             }
         }.collect { it.getAt(0) }
+        println counts
         return counts
     }
 
@@ -81,22 +82,27 @@ class DashboardService {
     def toptopics(){
 
         List <Long> topicsid=Topic.list().collect{
-            it.id
+           /* if(it.visibility==Visibility.PUBLIC){
+                return it.id
+            }*/ it.id
+
         }
         //print topicsid
-        List abcd=Resources.createCriteria().list(max:5)
+        List resourcelist=Resources.createCriteria().list()
                 {
                     projections{
                         count('topic.id')
                         groupProperty('topic.id')
                         // countDistinct('topic.id')
+
                     }
+
                     //order()
                 }
-        println abcd
-        abcd.sort{b,a-> a.getAt(0)<=>b.getAt(0)}
-        println"abcd"+ abcd
-        List xyz=abcd.collect{ x ->
+        println resourcelist
+        resourcelist.sort{b,a-> a.getAt(0)<=>b.getAt(0)}
+        println"resourcelist"+ resourcelist
+        List tlist=resourcelist.collect{ x ->
             topicsid.find{
                 if (x.getAt(1)==it)
                     return x.getAt(1)
@@ -104,21 +110,23 @@ class DashboardService {
                     return 0
             }
         }
-        println"xyz"+ xyz
-        xyz.removeAll{it==0}
-        List bbb= xyz+(topicsid-xyz)
-        println"bbb"+ bbb
+        println"tlist"+ tlist
+        tlist.removeAll{it==0}
+        List finallist= tlist+(topicsid-tlist)
+       /* finallist.removeAll{
+            it==null
+        }*/
         List<Topic> topicList=[]
         def i
         for(i=0;i<5;i++)
-            topicList.add(Topic.get(bbb[i]))
+            topicList.add(Topic.get(finallist[i]))
         println "trend"+topicList
         return topicList
 
     }
 
     def toptopicposts(trending){
-        List abcd = Resources.createCriteria().list()
+        List resourcelist = Resources.createCriteria().list()
                 {
                     projections {
                         count('topic.id')
@@ -127,19 +135,20 @@ class DashboardService {
                     }
                     //order()
                 }
-        println "abcd"+abcd
-        abcd.sort { b, a -> a.getAt(0) <=> b.getAt(0) }
-        println "abcd is this>>>>>>>>>>>>>>>>>>>>>>>"+abcd
+
+        println "resourcelist"+resourcelist
+        resourcelist.sort { b, a -> a.getAt(0) <=> b.getAt(0) }
+        println "resourcelist is this>>>>>>>>>>>>>>>>>>>>>>>"+resourcelist
         println "trending is this>>>>>>>>>>>>>>>>>>>"+trending
-        List xyz = trending.collect { x ->
-            abcd.find {
+        List tlist = trending.collect { x ->
+            resourcelist.find {
                 if (it.getAt(1) == x.id)
                     return it.getAt(0)
                 else
                     return 0
             }
         }
-        List resultCount = xyz.collect{if(!it)
+        List resultCount = tlist.collect{if(!it)
             return 0
         else
             it.getAt(0)

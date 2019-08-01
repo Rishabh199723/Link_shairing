@@ -112,7 +112,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-2 control-label">Topic</div>
                                         <div class="col-sm-10">
-                                            <g:select name="visibility" from="${['PUBLIC' , 'PRIVATE']}"
+                                            <g:select name="visibility" from="${subs.topic.name}"
                                                       class="dropdown-toggle btn btn-default col-sm-8"  />
                                         </div>
                                     </div>

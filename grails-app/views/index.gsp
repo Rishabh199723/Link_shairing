@@ -384,7 +384,7 @@
 <script>
     function changepass(){
         var email=$('#e').val();
-        console.log(email, resetPasswordUrl);
+
         $.ajax({
             "url": resetPasswordUrl,
             "type": "get",

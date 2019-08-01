@@ -2,7 +2,7 @@
 <%@ page import="rx.bootcamp.*" %>
 <html>
 <head>
-   %{-- <style>
+    <style>
     .rate {
         float: left;
         height: 46px;
@@ -38,7 +38,7 @@
     .rate > label:hover ~ input:checked ~ label {
         color: #c59b08;
     }
-    </style>--}%
+    </style>
     <meta charset="utf-8" />
            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
            <meta name="description" content="" />
@@ -155,18 +155,18 @@
                                <div class="col-md-6">
                                <g:link controller="topic" action="topicshow" params="[id: resource.topic.subscriptions1.id.getAt(0)]">${resource.topic.name}</g:link><br>
                                ${resource.dateCreated}
-                                 %{--  <div class="rate" >
+                                  %{-- <div class="rate" >
 
-                                       <input type="radio" id="star5" name="rate" value="5"  />
-                                       <label for="star5" title="text">5 stars</label>
-                                       <input type="radio" id="star4" name="rate" value="4" />
-                                       <label for="star4" title="text">4 stars</label>
-                                       <input type="radio" id="star3" name="rate" value="3" />
-                                       <label for="star3" title="text">3 stars</label>
-                                       <input type="radio" id="star2" name="rate" value="2" />
-                                       <label for="star2" title="text">2 stars</label>
-                                       <input type="radio" id="star1" name="rate" value="1" />
-                                       <label for="star1" title="text">1 star</label>
+                                       <input type="radio" id="5" name="rate" value="5" onclick="Rating('${session.uname}' , '${resource.id}' , '${5}')" />
+                                       <label for="5" title="text">5 stars</label>
+                                       <input type="radio" id="4" name="rate" value="4" onclick="Rating('${session.uname}' , '${resource.id}' , '${4}')"/>
+                                       <label for="4" title="text">4 stars</label>
+                                       <input type="radio" id="3" name="rate" value="3" onclick="Rating('${session.uname}' , '${resource.id}' , '${3}')"/>
+                                       <label for="3" title="text">3 stars</label>
+                                       <input type="radio" id="2" name="rate" value="2" onclick="Rating('${session.uname}' , '${resource.id}' , '${2}')"/>
+                                       <label for="2" title="text">2 stars</label>
+                                       <input type="radio" id="1" name="rate" value="1" onclick="Rating('${session.uname}' , '${resource.id}' , '${1}')"/>
+                                       <label for="1" title="text">1 star</label>
 
                                    </div>--}%
                                </div></div><br><br>
@@ -180,7 +180,6 @@
                                        <span id="3" onclick="Rating('${session.uname}' , '${resource.id}' , '${3}')"class="glyphicon glyphicon-star"></span>
                                        <span id="4" onclick="Rating('${session.uname}' , '${resource.id}' , '${4}')"class="glyphicon glyphicon-star"></span>
                                        <span id="5" onclick="Rating('${session.uname}' , '${resource.id}' , '${5}')"class="glyphicon glyphicon-star"></span>
-
 
                                    </div></div><br><br><br>
                                    <p id="test"></p>
