@@ -194,13 +194,23 @@
                               <a>Edit</a>
                              </div>
 
-
+                           <g:if test="${resource.hasProperty('link')}">
                           <div class="col-md-2">
-                         <g:link controller="Document" action="download" params="[id:resource.id]">Download</g:link>
+                         <a>Download</a>
                          </div>
 
                        <div class="col-md-2">
-                                 <a>View full site</a>   </div>
+                                 <a href="${resource.link}">View full site</a>   </div>
+                           </g:if>
+                                   <g:else>
+                                       <div class="col-md-2">
+                                           <g:link controller="Document" action="download" params="[id:resource.id]">Download</g:link>
+                                       </div>
+
+                                       <div class="col-md-2">
+                                           <a>View full site</a>   </div>
+                                   </g:else>
+
               </div>
 
 

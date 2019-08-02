@@ -374,7 +374,10 @@
                 <br>
                 <p><b>Upload Photo</b><input id="photo" type="file" accept="image/*" name="photo"></p>
                 <br>
+                <p>${flash.message2}</p>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+
+
             </g:uploadForm>
         </div>
 

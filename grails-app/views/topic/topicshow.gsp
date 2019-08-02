@@ -304,7 +304,7 @@
                                 <a  >Download</a>
                                 </div>
                                 <div class="col-md-3">
-                                <a href="${res.link}">View Full Site</a>
+                                <a href="${res.link}" target="_blank">View Full Site</a>
                                 </div></g:if>
                             <g:else>
                                 <g:link controller="Document" action="download" params="[id:res.id , tid:subs.id]" >Download</g:link>
@@ -315,13 +315,13 @@
                             </g:else>
 
 
-                                <g:if test="${read.getAt(i).resource.id==res.id}">
-                                    <g:if test="${read.isRead==false}">
+
+
                                         <div class="col-md-3">
                                         <g:link controller="Reading" action="editread" params="[id:res.id]" >Mark as read</g:link>
                                         </div>
-                                    </g:if>
-                                </g:if>
+
+
 
 
                             <div class="col-md-3">

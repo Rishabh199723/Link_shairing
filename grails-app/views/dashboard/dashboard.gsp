@@ -67,7 +67,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-2 control-label">Name</div>
                                         <div class="col-sm-10">
-                                            <input type="text" name="topicName" placeholder="Topic Name"
+                                            <input type="text" required="true" name="topicName" placeholder="Topic Name"
                                                    class="form-control col-sm-8" />
                                         </div>
                                     </div>
@@ -105,7 +105,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-2 control-label">Email</div>
                                         <div class="col-sm-10">
-                                            <input type="email" name="email" placeholder="Topic Name"
+                                            <input type="email" required="true" name="email" placeholder="Topic Name"
                                                    class="form-control col-sm-8" />
                                         </div>
                                     </div>
@@ -323,6 +323,9 @@
                                                 <g:field type="hidden" name="id" value="${sub.topicId}"></g:field>
                                                 <g:select onChange="submit()" name="visibility" from="${['PUBLIC','PRIVATE']}" value="${sub.topic.visibility}" />
                                             </g:form>
+                                        </li>
+                                        <li>
+                                            <g:link controller="topic" action="deletetopic" params="[id:sub.topic.id]"><i class="fa fa-trash" aria-hidden="true" style="color: black"></i></g:link>
                                         </li>
                                     </ul>
                                 </div>

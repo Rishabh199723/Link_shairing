@@ -24,6 +24,12 @@ class TopicController {
         redirect controller: 'dashboard',action:'dashboard'
     }
 
+    def deletetopic(){
+        Topic t=Topic.get(params.id)
+        t.delete(flush:true)
+        redirect controller: 'Dashboard',action: 'dashboard'
+
+    }
     def index() {}
 
     def topics() {
