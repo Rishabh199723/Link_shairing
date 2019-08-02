@@ -21,7 +21,7 @@ class DashboardService {
     def subscriptions(String name){
 
         Users user = Users.findByEmail(name)
-        List<Topic> subscriptionList = Subscription.createCriteria().list {
+        List<Topic> subscriptionList = Subscription.createCriteria().list(max:5) {
             eq("user.id",user.id)
         }
 
@@ -82,9 +82,9 @@ class DashboardService {
     def toptopics(){
 
         List <Long> topicsid=Topic.list().collect{
-           /* if(it.visibility==Visibility.PUBLIC){
+            if(it.visibility==Visibility.PUBLIC){
                 return it.id
-            }*/ it.id
+            }
 
         }
         //print topicsid
@@ -111,16 +111,20 @@ class DashboardService {
             }
         }
         println"tlist"+ tlist
-        tlist.removeAll{it==0}
+        //tlist.removeAll{it==0}
         List finallist= tlist+(topicsid-tlist)
-       /* finallist.removeAll{
+        println finallist
+        finallist.removeAll{
             it==null
-        }*/
+        }
+        println finallist
         List<Topic> topicList=[]
         def i
         for(i=0;i<5;i++)
-            topicList.add(Topic.get(finallist[i]))
-        println "trend"+topicList
+            if(i<finallist.size()){
+                topicList.add(Topic.get(finallist[i]))
+            }
+
         return topicList
 
     }
@@ -167,7 +171,7 @@ class DashboardService {
                 }
         topiccounts.sort { b, a -> a.getAt(0) <=> b.getAt(0) }
         println topiccounts
-        List xyz = trending.collect { x ->
+        List topicids = trending.collect { x ->
             topiccounts.find {
                 if (it.getAt(1) == x.id)
                     return it.getAt(0)
@@ -175,7 +179,7 @@ class DashboardService {
                     return 0
             }
         }
-        List resultCount = xyz.collect{if(!it)
+        List resultCount = topicids.collect{if(!it)
             return 0
         else
             it.getAt(0)

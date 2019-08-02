@@ -60,7 +60,7 @@
 
                     <div class="dropdown">
                         <a href="" data-toggle="dropdown" >${session.uname} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" >
                             <li><a href="/Profile/editprofile">Profile</a></li>
                             <li><a href="/User/logout">Logout</a></li>
                         </ul>

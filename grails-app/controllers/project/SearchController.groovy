@@ -17,14 +17,24 @@ class SearchController {
     {
         String name = params.res
         Topic topic = Topic.findByName(name)
-        Long topicId = topic.id
-        //println topicId
-        List<Long> subId = Subscription.createCriteria().list{
-            eq('topic.id',topicId)
-        }.collect{it.id}
-        Long sid = subId.getAt(0)
-        String subid = sid.toString()
-        //  println subid
-        redirect controller:'topic',action:'topicshow',params:[id:subid]
+
+        if(topic==null){
+            Resources resources = Resources.findByDescription(name)
+            Long resourceId = resources.id
+            redirect controller: 'resources', action: 'index', params:[id:resourceId]
+        }
+        else{
+            Long topicId = topic.id
+            //println topicId
+            List<Long> subId = Subscription.createCriteria().list{
+                eq('topic.id',topicId)
+            }.collect{it.id}
+            Long sid = subId.getAt(0)
+            String subid = sid.toString()
+            //  println subid
+            redirect controller:'topic',action:'topicshow',params:[id:subid]
+        }
+
+
     }
 }

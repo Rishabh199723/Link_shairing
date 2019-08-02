@@ -5,6 +5,25 @@ class TopicController {
     def topicService
     def topiclistService
     def dashboardService
+
+
+    def sendInvite()
+    {
+        println params
+        Users user = Users.findByEmail(params.email)
+        if(!user)
+            user = Users.findByUsername(params.email)
+        Topic topic = Topic.findByName(params.topic)
+        Long topicId = topic.id
+        String link = createLink(controller: 'Subscription', action: 'subscribe',params:[id:topicId], absolute: true)
+        sendMail {
+            to "${user.email}"
+            subject "Hello ${user.fName} You have been invited to join this topic at LinkSharing!!!"
+            text link
+        }
+        redirect controller: 'dashboard',action:'dashboard'
+    }
+
     def index() {}
 
     def topics() {

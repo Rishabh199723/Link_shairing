@@ -32,7 +32,5 @@ def documentService
     {
         documentService.saveMethod(params,session.uname,request)
         redirect(controller:"Dashboard" , action:"dashboard")
-
-
     }
 }

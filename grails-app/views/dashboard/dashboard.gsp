@@ -101,18 +101,18 @@
                                 <h4 class="modal-title" >Send Invitation</h4>
                             </div>
                             <div class="modal-body">
-                                <g:form class="form-horizontal" controller="Topic" action="topics" name="topicCreate">
+                                <g:form class="form-horizontal" controller="Topic" action="sendInvite" name="topicCreate">
                                     <div class="form-group">
                                         <div class="col-sm-2 control-label">Email</div>
                                         <div class="col-sm-10">
-                                            <input type="email" name="topicName" placeholder="Topic Name"
+                                            <input type="email" name="email" placeholder="Topic Name"
                                                    class="form-control col-sm-8" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-2 control-label">Topic</div>
                                         <div class="col-sm-10">
-                                            <g:select name="visibility" from="${subs.topic.name}"
+                                            <g:select name="topic" from="${subs.topic.name}"
                                                       class="dropdown-toggle btn btn-default col-sm-8"  />
                                         </div>
                                     </div>
@@ -289,7 +289,7 @@
 <br>
         </div>
         <div class="panel panel-default" style="overflow: auto;height: 500px">
-            <div class="panel-heading">Subscriptions</div>
+            <div class="panel-heading">Subscriptions  &nbsp ${flash.message1}</div>
             <div class="panel-body">
                 <g:each var="sub" in="${subs}" status="i">
                     <div class="panel-body">
@@ -344,7 +344,7 @@
 
 
         <div class="panel panel-default" style="overflow: auto;height: 500px">
-            <div class="panel-heading">Top posts</div>
+            <div class="panel-heading">Top Topics</div>
             <div class="panel-body">
                 <g:each var="topic" in="${toptopics}" status="i">
                     <div class="panel-body">
@@ -395,7 +395,7 @@
                                         </div>
                                     <div class="row">
                                     <div class="col-md-3">
-                                        <g:if test="${res instanceof project.LinkResource}">
+                                        <g:if test="${res.hasProperty("link")}">
                                             <a >Download</a>
                                            </div>
                                          <div class="col-md-3">
@@ -412,10 +412,10 @@
                                             <g:link controller="reading" action="editread" params="[id:res.id]">Mark as read</g:link>
                                         </div>
                                         <div class="col-md-3">
-                                            <g:link controller="resource" action="index" params="[id: res.id]">View post</g:link>
+                                            <g:link controller="resources" action="index" params="[id: res.id]">View post</g:link>
                                         </div>
                                     </div>
-
+                                </div>
                             </li>
                         </g:each>
                     </div>

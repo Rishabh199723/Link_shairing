@@ -31,7 +31,7 @@ class DocumentService {
         dr.save()
         r1.save(flush:true,failOnError:true)
         userlist.each{user1->
-            Reading_Item r=new Reading_Item(resource: lr,user:user1,isRead:false)
+            Reading_Item r=new Reading_Item(resource: dr,user:user1,isRead:false)
             r.save(flush:true)
             user1.save(flush:true)
         }

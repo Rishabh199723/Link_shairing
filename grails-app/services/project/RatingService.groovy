@@ -23,7 +23,8 @@ class RatingService {
             resRate.save(flush:true)
         }
         else{
-            Resource_Rating resourceRate = new Resource_Rating(rating:rating)
+            println "==========================================="+rating
+            Resource_Rating resourceRate = new Resource_Rating(score:rating)
             user.addToResourcerated(resourceRate)
             res.addToResourcerate(resourceRate)
             user.save(flush:true,failOnError: true)

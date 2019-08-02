@@ -13,7 +13,7 @@ class ResourcesController {
         //def topiclist= subs*.topic.collect{it.id}
 
         List<Integer> toptopicposts=dashboardService.toptopicposts(trending)
-        println "+++++++++++++++++++++++++++++++++++++++"
+
         println toptopicposts
         List<Integer> toptopicsubs=dashboardService.toptopicsubs(trending)
 

@@ -49,14 +49,25 @@ def subscriptionService
     }
 
     def subscribe(params){
-        Users user=Users.findByEmail(session.name)
-        Long topid = Long.parseLong(params.id)
-        Topic t=Topic.get(topid)
 
-        Subscription s=new Subscription(seriousness: "CASUAL" ,topic :t)
-        user.addToSubscribed(s)
-        s.save(flush:true,failOnError:true)
-        user.save(flush:true,failOnError:true)
-        redirect(controller:"Dashboard" ,action:"dashboard")
+
+            Users user=Users.findByEmail(session.name)
+            Long topid = Long.parseLong(params.id)
+            Topic t=Topic.get(topid)
+            Subscription s=Subscription.findByTopicAndUser(t,user)
+            if(s==null){
+            s=new Subscription(seriousness: "CASUAL" ,topic :t)
+            user.addToSubscribed(s)
+            s.save(flush:true,failOnError:true)
+            user.save(flush:true,failOnError:true)
+        }
+        else{
+            flash.message1="Already subscribed"
+        }
+
+            redirect(controller:"Dashboard" ,action:"dashboard")
+
+
+
     }
 }

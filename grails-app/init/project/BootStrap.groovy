@@ -7,7 +7,7 @@ class BootStrap {
         Users u1=new Users(username : 'nitin' , fName :'nitin'  , lName : 'nepalia' , password : 'nitin' , admin : false , active : true , email : 'nitin.nepalia@gmail.com' )
         Users u2=new Users(username : 'saurabh' , fName :'saurabh'  , lName : 'kumar' , password : 'saurabh' , admin : false , active : true , email : 'saurabh@gmail.com')
         Users u3=new Users(username : 'aman' , fName :'aman'  , lName : 'aggarwal' , password : 'aman' , admin : false , active : true , email : 'aman@gmail.com')
-        Users u4=new Users(username : 'rishabh' , fName :'rishabh'  , lName : 'gupta' , password : 'rishabh' , admin : true , active : true , email : 'rishabhgupta199723@gmail.com')
+        Users u4=new Users(username : 'rishabh' , fName :'rishabh'  , lName : 'gupta' , password : 'rishabh' , admin : true , active : true , email : 'rishabhgupta199723@gmail.com',photo: 'rishabh.jpg')
 /*        Topic t1=new Topic()
         Topic t2=new Topic()
         Topic t3=new Topic()

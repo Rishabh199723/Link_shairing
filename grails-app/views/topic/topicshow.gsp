@@ -27,7 +27,7 @@
         <div class="panel-body">
             <div class="container">
                 <div class="col-md-4">
-                    <h4><a href="#"><strong><u>Link Sharing</u></strong></a></h4>
+                    <h4><a href="/Dashboard/dashboard"><strong><u>Link Sharing</u></strong></a></h4>
                 </div>
 
                 <div class="col-md-3">
@@ -45,93 +45,55 @@
                 <div class="col-md-3">
                     <ul class="nav navbar-nav">
 
-                        <li><a href="" data-toggle="modal" data-target="#createtopic"><span
-                                class="glyphicon glyphicon-comment"></span></a></li>
-                        <li><a href="" data-toggle="modal" data-target="#sendinvitation"><span
-                                class="glyphicon glyphicon-envelope"></span></a></li>
-                        <li><a href="" data-toggle="modal" data-target="#createLink"><span
+
+                        <li><a href="" data-toggle="modal" data-target="#sharelink"><span
                                 class="glyphicon glyphicon-link"></span></a></li>
-                        <li><a href="" data-toggle="modal"><span class="glyphicon glyphicon-file"></span></a></li>
+                        <li><a href="" data-toggle="modal" data-target="#sharedocument"><span class="glyphicon glyphicon-file"></span></a></li>
 
                     </ul>
 
                 </div>
 
-                <div class="modal fade" id="createtopic">
+
+
+
+                <div class="modal fade" id="sharelink">
                     <div class="modal-dialog">
 
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Create Topic</h4>
+                                <h4 class="modal-title" >Share Link</h4>
                             </div>
-
                             <div class="modal-body">
-                                <g:form class="form-horizontal" controller="topic" action="create" name="topicCreate">
+                                <g:form class="form-horizontal" controller="Link" action="save" name="linkcreate">
                                     <div class="form-group">
-                                        <div class="col-sm-2 control-label">Name</div>
-
+                                        <div class="col-sm-2 control-label">Link</div>
                                         <div class="col-sm-10">
-                                            <input type="text" name="topicName" placeholder="Topic Name"
-                                                   class="form-control col-sm-8"/>
+                                            <input  name="url" placeholder="Url"
+                                                    class="form-control col-sm-8" />
                                         </div>
                                     </div>
-
                                     <div class="form-group">
-                                        <div class="col-sm-2 control-label">visibility</div>
-
+                                        <div class="col-sm-2 control-label">Description</div>
                                         <div class="col-sm-10">
-                                            <g:select name="visibility" from="${['public', 'private']}"
-                                                      class="dropdown-toggle btn btn-default col-sm-8"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-default">Save</button>
-                                        </div>
-                                    </div>
-                                </g:form>
-
-                            </div>
-                        </div>
-                    </div></div>
-
-
-                <div class="modal fade" id="sendinvitation">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Send Invitation</h4>
-                            </div>
-
-                            <div class="modal-body">
-                                <g:form class="form-horizontal" controller="topic" action="create" name="topicCreate">
-                                    <div class="form-group">
-                                        <div class="col-sm-2 control-label">Email</div>
-
-                                        <div class="col-sm-10">
-                                            <input type="email" name="topicName" placeholder="Topic Name"
-                                                   class="form-control col-sm-8"/>
+                                            %{--  <input type="email" name="topicName" placeholder="Topic Name"
+                                                     class="form-control col-sm-8" />--}%
+                                            <textarea class="form-control col-sm-8" name="description" rows="5" id="comment" name="text"></textarea>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="col-sm-2 control-label">Topic</div>
-
                                         <div class="col-sm-10">
-                                            <g:select name="visibility" from="${['public', 'private']}"
-                                                      class="dropdown-toggle btn btn-default col-sm-8"/>
+                                            <g:textField name="topic" value="${subs.topic.name}"
+                                                      class="dropdown-toggle btn btn-default col-sm-8"  />
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-default">Save</button>
+                                            <button type="submit" class="btn btn-default">Share</button>
                                         </div>
                                     </div>
                                 </g:form>
@@ -139,6 +101,55 @@
                             </div>
                         </div>
                     </div></div>
+
+                <div class="modal fade" id="sharedocument">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" >Share Document</h4>
+                            </div>
+                            <div class="modal-body">
+                                <g:form class="form-horizontal" controller="Document" action="save" name="documentcreate" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <div class="col-sm-2 control-label">Document</div>
+                                        <div class="col-sm-10">
+                                            <div class="custom-file mb-3">
+                                                <input type="file" class="custom-file-input" id="filename" name="doc"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-2 control-label">Description</div>
+                                        <div class="col-sm-10">
+                                            %{--  <input type="email" name="topicName" placeholder="Topic Name"
+                                                     class="form-control col-sm-8" />--}%
+                                            <textarea class="form-control col-sm-8" name="description" rows="5" id="comment" name="text"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-2 control-label">Topic</div>
+                                        <div class="col-sm-10">
+                                            <g:textField name="topic" value="${subs.topic.name}"
+                                                      class="dropdown-toggle btn btn-default col-sm-8"  />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-default">Share</button>
+                                        </div>
+                                    </div>
+                                </g:form>
+
+                            </div>
+                        </div>
+                    </div></div>
+
+
 
 
                 <div class="col-md-2">
@@ -318,9 +329,10 @@
 
                             </div>
                         </div>
-                        <br>
                     </div>
 
+                    </div>
+                    <br>
                 </g:each>
             </div>
         </div>
