@@ -24,7 +24,18 @@ class TopicService {
 
     def subscriptioncount(List userslist)
     {
-        def usercounts=Subscription.createCriteria().list()
+        List counts=[]
+        List users=[]
+        userslist.each{
+            def u=Users.get(it)
+            users.add(u)
+        }
+        users.each{
+            def subcount=it.subscribed.size()
+            counts.add(subcount)
+        }
+        return counts
+        /*def usercounts=Subscription.createCriteria().list()
                 {
                     projections{
                         count('user.id')
@@ -42,12 +53,23 @@ class TopicService {
             }
 
         }.collect{it.getAt(0)}
-        return counts
+        return counts*/
     }
 
     def topiccount(List userslist)
     {
-        def topcounts=Topic.createCriteria().list()
+        List topiccount=[]
+        List users=[]
+        userslist.each{
+            def u=Users.get(it)
+            users.add(u)
+        }
+        users.each{
+            def subcount=it.topics1.size()
+            topiccount.add(subcount)
+        }
+        return topiccount
+        /*def topcounts=Topic.createCriteria().list()
                 {
                     projections{
                         count('createdBy.id')
@@ -71,7 +93,7 @@ class TopicService {
         else
             it.getAt(0)}
 
-        return topiccount
+        return topiccount*/
 
     }
 
