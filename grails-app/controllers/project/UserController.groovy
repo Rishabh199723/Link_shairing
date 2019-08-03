@@ -10,7 +10,7 @@ class UserController {
 
         def sign = registerService.serviceMethod(params, request)
         if (sign == 1) {
-            redirect(controller: 'Dashboard',action: 'dashboard')
+            redirect(url:"/")
         } else {
             flash.message2="Username already taken"
             redirect(url: "/")

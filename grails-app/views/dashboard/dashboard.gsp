@@ -228,6 +228,50 @@
                     </div></div>
 
 
+                %{--MODAL FOR SUBSCRIPTIONS SHOW--}%
+                <div class="modal fade" id="showsubscriptions">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" >Topic names subscribed</h4>
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                    <g:each in="${subs}" var="sub" status="i">
+                                        <g:link controller="topic" action="topicshow" params="[id:sub.id]"><li>${sub.topic.name}</li></g:link>
+                                    </g:each>
+                                </ul>
+                            </div>
+                        </div>
+                    </div></div>
+
+
+                %{--MODAL FOR TOPICSHOW--}%
+
+                <div class="modal fade" id="showtopics">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" >Topic names created</h4>
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                    <g:each in="${subs}" var="sub" status="i">
+                                        <g:if test="${sub.topic.createdBy.username==session.uname}">
+                                            <g:link controller="topic" action="topicshow" params="[id:sub.id]"><li>${sub.topic.name}</li></g:link>
+                                        </g:if>
+                                    </g:each>
+                                </ul>
+                            </div>
+                        </div>
+                    </div></div>
+
+
+
 
 
 
@@ -281,7 +325,7 @@
                     <div style="font-size:23px;"> <g:link controller="Dashboard" action="viewprofile" > ${userdata.fName} &nbsp ${userdata.lName}</g:link>
 
                         <p>@${userdata.username}</p>
-                        <p>Topics:   &nbsp${topcount}  &nbsp  Subscriptions:${subcounts}</p>
+                        <p><a href="" data-toggle="modal" data-target="#showtopics">Topics:   &nbsp${topcount}</a>  &nbsp  <a href="" data-toggle="modal" data-target="#showsubscriptions">Subscriptions:${subcounts}</a></p>
                     </div>
                 </div>
                 </div>
@@ -292,6 +336,7 @@
             <div class="panel-heading">Subscriptions  &nbsp ${flash.message1}</div>
             <div class="panel-body">
                 <g:each var="sub" in="${subs}" status="i">
+                    <g:if test="${i<5}">
                     <div class="panel-body">
                         <g:link controller="topic" action="topicshow" params="[id: sub.id]">  ${sub.topic.name} </g:link>
                         <br>
@@ -340,6 +385,7 @@
                         </g:else>
 
                     </div>
+                    </g:if>
                 </g:each>
             </div>
 

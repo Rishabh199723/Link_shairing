@@ -21,7 +21,7 @@ class DashboardService {
     def subscriptions(String name){
 
         Users user = Users.findByEmail(name)
-        List<Topic> subscriptionList = Subscription.createCriteria().list(max:5) {
+        List<Topic> subscriptionList = Subscription.createCriteria().list() {
             eq("user.id",user.id)
         }
 
