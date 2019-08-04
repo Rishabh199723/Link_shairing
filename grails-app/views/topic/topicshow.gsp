@@ -210,6 +210,10 @@
 
                 <div class="row">
                     <div class="col-md-5">
+                        <g:if test="${subs.topic.createdBy.username==session.uname}">
+
+                        </g:if>
+                        <g:else>
                         <g:if test="${tids.contains(subs.topic.id)}">
                             <g:link controller="Subscription" action="unsubscribe" params="[id: subs.topic.id,page:"dashboard"]">  Unsubscribe </g:link>
                             <br>
@@ -218,6 +222,7 @@
                             <g:link controller="Subscription" action="subscribe" params="[id: subs.topic.id,page:"dashboard"]">  Subscribe </g:link>
                             <br>
 
+                        </g:else>
                         </g:else>
                     </div>
 
