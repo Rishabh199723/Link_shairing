@@ -64,14 +64,16 @@
                <h4><a href="/Dashboard/dashboard"><strong> <u>Link Sharing</u></strong></a></h4>
              </div>
              <div class="col-md-3">
-               <div class="input-group">
-                 <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
-                 <div class="input-group-btn">
-                   <button class="btn btn-basic" type="submit">
-                     <span class="glyphicon glyphicon-search"></span>
-                   </button>
-                 </div>
-               </div>
+                 <g:form controller="search" action="index">
+                     <div class="input-group">
+                         <input type="text" name="search" class="form-control" placeholder="Search" id="txtSearch"/>
+                         <div class="input-group-btn">
+                             <button class="btn btn-basic" type="submit" >
+                                 <span class="glyphicon glyphicon-search"></span>
+                             </button>
+                         </div>
+                     </div>
+                 </g:form>
              </div>
              <div class= "col-md-3">
               <ul class="nav navbar-nav">
