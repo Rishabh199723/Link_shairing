@@ -455,8 +455,9 @@
                                             <g:link controller="Document" action="download" params="[id:res.id , tid:res.id ,page:"dashboard"]" >Download</g:link>
                                             </div>
                                             <div class="col-md-3">
-                                                <a href="${res.link}">View Full Site</a>
-                                            </div></g:else>
+                                                <a>View Full Site</a>
+                                            </div>
+                                        </g:else>
                                         <div class="col-md-3">
                                             <g:link controller="reading" action="editread" params="[id:res.id]">Mark as read</g:link>
                                         </div>

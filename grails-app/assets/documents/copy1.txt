@@ -1,0 +1,92 @@
+1 //def s=new ArrayList<>()1 //def s=new ArrayList<>()3 //print s5 //List b=[1,2]7 //print a9 //print(a as Set)11 //String x="rihana world"13 //x.tokenize('al')15 //print a.collect{it*2} 17 //p.findAll{it=="gupta"}19 /*p1.find{it==1}21 p.reverseEach{println it}23 println p1.min()25 */27 29 println it31 print it}33 //println p1.intersect(p2)35 println p1.every{it>=1}37 */39 //print(1..10)41 //Map l=[a:"1",b:"2",c:"1"]43 //l.each{key,value-> println "$key ${value}"}45 //r.groupBy({it[2]})1 //def s=new ArrayList<>()
+3 //print s
+5 //List b=[1,2]
+7 //print a
+9 //print(a as Set)
+11 //String x="rihana world"
+13 //x.tokenize('al')
+15 //print a.collect{it*2} 
+17 //p.findAll{it=="gupta"}
+19 /*p1.find{it==1}
+21 p.reverseEach{println it}
+23 println p1.min()
+25 */
+27 
+29 println it
+31 print it}
+33 //println p1.intersect(p2)
+35 println p1.every{it>=1}
+37 */
+39 //print(1..10)
+41 //Map l=[a:"1",b:"2",c:"1"]
+43 //l.each{key,value-> println "$key ${value}"}
+45 //r.groupBy({it[2]})
+1 //def s=new ArrayList<>()
+3 //print s
+5 //List b=[1,2]
+7 //print a
+9 //print(a as Set)
+11 //String x="rihana world"
+13 //x.tokenize('al')
+15 //print a.collect{it*2} 
+17 //p.findAll{it=="gupta"}
+19 /*p1.find{it==1}
+21 p.reverseEach{println it}
+23 println p1.min()
+25 */
+27 
+29 println it
+31 print it}
+33 //println p1.intersect(p2)
+35 println p1.every{it>=1}
+37 */
+39 //print(1..10)
+41 //Map l=[a:"1",b:"2",c:"1"]
+43 //l.each{key,value-> println "$key ${value}"}
+45 //r.groupBy({it[2]})
+1 //def s=new ArrayList<>()
+3 //print s
+5 //List b=[1,2]
+7 //print a
+9 //print(a as Set)
+11 //String x="rihana world"
+13 //x.tokenize('al')
+15 //print a.collect{it*2} 
+17 //p.findAll{it=="gupta"}
+19 /*p1.find{it==1}
+21 p.reverseEach{println it}
+23 println p1.min()
+25 */
+27 
+29 println it
+31 print it}
+33 //println p1.intersect(p2)
+35 println p1.every{it>=1}
+37 */
+39 //print(1..10)
+41 //Map l=[a:"1",b:"2",c:"1"]
+43 //l.each{key,value-> println "$key ${value}"}
+45 //r.groupBy({it[2]})
+1 //def s=new ArrayList<>()
+3 //print s
+5 //List b=[1,2]
+7 //print a
+9 //print(a as Set)
+11 //String x="rihana world"
+13 //x.tokenize('al')
+15 //print a.collect{it*2} 
+17 //p.findAll{it=="gupta"}
+19 /*p1.find{it==1}
+21 p.reverseEach{println it}
+23 println p1.min()
+25 */
+27 
+29 println it
+31 print it}
+33 //println p1.intersect(p2)
+35 println p1.every{it>=1}
+37 */
+39 //print(1..10)
+41 //Map l=[a:"1",b:"2",c:"1"]
+43 //l.each{key,value-> println "$key ${value}"}
+45 //r.groupBy({it[2]})

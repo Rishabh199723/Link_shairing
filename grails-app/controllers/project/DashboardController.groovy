@@ -26,6 +26,7 @@ class DashboardController {
             List<Integer> toptopicposts=dashboardService.toptopicposts(toptopic)
             List<Integer> toptopicsubs=dashboardService.toptopicsubs(toptopic)
             List resources=readingService.displayunread(session.uname)
+
             render(view: 'dashboard',model: [userdata:user,tids:tids,topcount:topcount,subcounts:subcount,subs:subs,countofsubs:countofsub,countofposts:countofpost,toptopics:toptopic,toptopicpost:toptopicposts,toptopicsub:toptopicsubs,resources:resources])
 
 

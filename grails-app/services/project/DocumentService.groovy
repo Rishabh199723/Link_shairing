@@ -7,7 +7,7 @@ class DocumentService {
 
 
     def saveMethod(params,username,request) {
-        String topicname=params.topic
+        String topicname=params.topicname
         String description=params.description
         println"-------++++++++++++++++++++++"
         def f = request.getFile($/doc/$)

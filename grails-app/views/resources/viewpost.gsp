@@ -123,7 +123,7 @@
       </div>
       </div></div>
 
-               %{--MODEL FOR EDIT post--}%
+               %{--MODEL FOR EDIT link post--}%
                <div class="modal fade" id="editlink">
                    <div class="modal-dialog">
                        <!-- Modal content-->
@@ -166,18 +166,76 @@
                    </div></div>
 
 
+               %{--MODAL FOR EDIT DOCUMENT--}%
+               <div class="modal fade" id="editdocument">
+                   <div class="modal-dialog">
+                       <!-- Modal content-->
+                       <div class="modal-content">
+                           <div class="modal-header">
+                               <button type="button" class="close" data-dismiss="modal">&times;</button>
+                               <h4 class="modal-title" >Edit Document</h4>
+                           </div>
+                           <div class="modal-body">
+                               <g:form class="form-horizontal" controller="Document" action="updatedocument" name="documentcreate" enctype="multipart/form-data">
+                                   <g:field type="hidden" name="id" value="${resource.id}"></g:field>
+                                   <div class="form-group">
+                                       <div class="col-sm-2 control-label">Document</div>
+                                       <div class="col-sm-10">
+                                           <div class="custom-file mb-3">
+
+                                               <input type="file" class="custom-file-input" id="filename" name="doc" />
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <div class="form-group">
+                                       <div class="col-sm-2 control-label">Description</div>
+                                       <div class="col-sm-10">
+                                           %{--  <input type="email" name="topicName" placeholder="Topic Name"
+                                                    class="form-control col-sm-8" />--}%
+                                           <textarea class="form-control col-sm-8" name="description" rows="5" id="comment" name="text" >${resource.description}</textarea>
+                                       </div>
+                                   </div>
+                                   <div class="form-group">
+                                       <div class="col-sm-2 control-label">Topic</div>
+                                       <div class="col-sm-10">
+                                           <input name="topic" value="${resource.topic.name}" disabled
+                                           />
+                                       </div>
+                                   </div>
+                                   <div class="form-group">
+                                       <div class="col-sm-offset-2 col-sm-10">
+                                           <button type="submit" class="btn btn-default">Edit</button>
+                                       </div>
+                                   </div>
+                               </g:form>
+                           </div>
+                       </div>
+                   </div></div>
+
+
+
+
 
        <div class ="col-md-2">
-                   ${session.uname}
+           <div class="dropdown">
+               <a href="" data-toggle="dropdown" >${userdata.username} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+               <ul class="dropdown-menu">
 
-                   <li class="fa fa-caret-down"  onclick="Show()"></li>
-                   <ul class="nav nav-pills nav-stacked" id="drop" style="display:none">
-                     <li style="height:20px"><a href="#">Profile</a></li>
-                     <li style="height:20px"><a href="#">Users</a></li>
-                     <li style="height:20px"><a href="#">Topics</a></li>
-                     <li style="height:20px"><a href="#">Posts</a></li>
-                     <li style="height:20px"><a href="">Logout</a></li>
-                   </ul>
+                   <g:if test  = "${userdata.admin==true}" >
+                       <li><a href="/Profile/editprofile">Profile</a></li>
+                       <li><a href="/UserList/userlist">Users</a></li>
+                       <li><a href="/Topic/topiclist">Topic</a></li>
+                       <li><a href="/Resources/postlist">Posts</a></li>
+                       <li><a href="/User/logout">Logout</a></li>
+                   </g:if>
+                   <g:else>
+                       <li><a href="/Profile/editprofile">Profile</a></li>
+                       <li><a href="/User/logout">Logout</a></li>
+                   </g:else>
+
+
+               </ul>
+           </div>
 
                    </div>
                  </div>
@@ -236,9 +294,17 @@
                                  <div class="col-md-2">
                                      <g:link controller="Resources" action="deletepost" params="[id:resource.id]">Delete post</g:link>
                                    </div>
-                              <div class="col-md-2">
-                              <a href="" data-toggle="modal" data-target="#editlink">Edit Post</a>
-                             </div>
+                                   <g:if test="${resource.hasProperty('link')}">
+                                       <div class="col-md-2">
+                                           <a href="" data-toggle="modal" data-target="#editlink">Edit Link</a>
+                                       </div>
+                                   </g:if>
+                                   <g:else>
+                                       <div class="col-md-2">
+                                           <a href="" data-toggle="modal" data-target="#editdocument">Edit Document</a>
+                                       </div>
+                                   </g:else>
+
 
                            <g:if test="${resource.hasProperty('link')}">
                           <div class="col-md-2">
@@ -246,7 +312,7 @@
                          </div>
 
                        <div class="col-md-2">
-                                 <a href="${resource.link}">View full site</a>   </div>
+                                 <a href="${resource.link}" target="_blank">View full site</a>   </div>
                            </g:if>
                                    <g:else>
                                        <div class="col-md-2">
@@ -267,13 +333,13 @@
                  <div class="col-md-6">
 
                      <div class="panel panel-default" style="overflow: auto;height: 500px">
-                         <div class="panel-heading">Top posts</div>
+                         <div class="panel-heading">Top Topics</div>
                          <div class="panel-body">
                              <g:each var="topic" in="${trending}" status="i">
                                  <div class="panel-body">
-                                     <a href="#">${topic.name}</a>
+                                     <g:link controller="topic" action="topicshow" params="[id: topic.id]">  ${topic.name} </g:link>
                                      <br>
-                                     <i>@${userdata.username}</i>
+                                     <i>@${topic.createdBy.username}</i>
                                      <br>
                                      <g:if test="${tids.contains(topic.id)}">
                                          <a href="#" >Unsubscribe</a> &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}

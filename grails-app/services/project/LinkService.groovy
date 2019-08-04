@@ -8,7 +8,7 @@ class LinkService {
     def saveMethod(params,String username) {
         String url=params.url
         String description=params.description
-        String topicname=params.topic
+        String topicname=params.topicname
         Topic topic=Topic.findByName(topicname)
         Users user=Users.findByUsername(username)
         LinkResource lr=new LinkResource(link: url , description:description )

@@ -55,7 +55,7 @@
                 </div>
 
 
-
+                       %{-- MODEL FOR LINK SHARE--}%
 
                 <div class="modal fade" id="sharelink">
                     <div class="modal-dialog">
@@ -87,7 +87,8 @@
                                     <div class="form-group">
                                         <div class="col-sm-2 control-label">Topic</div>
                                         <div class="col-sm-10">
-                                            <g:textField name="topic" value="${subs.topic.name}"
+                                            <g:field type="hidden" name="topicname" value="${subs.topic.name}"></g:field>
+                                            <input type="text" name="topic" value="${subs.topic.name}" disabled
                                                       class="dropdown-toggle btn btn-default col-sm-8"  />
                                         </div>
                                     </div>
@@ -102,6 +103,8 @@
                         </div>
                     </div></div>
 
+
+                %{--MODEL FOR DOCUMENT SHARE--}%
                 <div class="modal fade" id="sharedocument">
                     <div class="modal-dialog">
 
@@ -134,7 +137,8 @@
                                     <div class="form-group">
                                         <div class="col-sm-2 control-label">Topic</div>
                                         <div class="col-sm-10">
-                                            <g:textField name="topic" value="${subs.topic.name}"
+                                            <g:field type="hidden" name="topicname" value="${subs.topic.name}"></g:field>
+                                            <input name="topic" value="${subs.topic.name}" disabled
                                                       class="dropdown-toggle btn btn-default col-sm-8"  />
                                         </div>
                                     </div>
@@ -154,25 +158,24 @@
 
                 <div class="col-md-2">
                     <div class="dropdown">
-                        <a href="" data-toggle="dropdown">${user.username} <i class="fa fa-caret-down"
-                                                                              aria-hidden="true"></i></a>
+                        <a href="" data-toggle="dropdown" >${user.username} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
-                            <li><a href="/UserList/userlist">Users</a></li>
-                            <li><a href="/Topic/topiclist">Topic</a></li>
-                            <li><a href="#">Posts</a></li>
-                            <li><a href="/User/logout">Logout</a></li>
+
+                            <g:if test  = "${user.admin==true}" >
+                                <li><a href="/Profile/editprofile">Profile</a></li>
+                                <li><a href="/UserList/userlist">Users</a></li>
+                                <li><a href="/Topic/topiclist">Topic</a></li>
+                                <li><a href="/Resources/postlist">Posts</a></li>
+                                <li><a href="/User/logout">Logout</a></li>
+                            </g:if>
+                            <g:else>
+                                <li><a href="/Profile/editprofile">Profile</a></li>
+                                <li><a href="/User/logout">Logout</a></li>
+                            </g:else>
+
+
                         </ul>
                     </div>
-
-                    %{--    <li class="fa fa-caret-down"  onclick="Show()"></li>
-                        <ul class="nav nav-pills nav-stacked" id="drop" style="display:none">
-                          <li style="height:20px"><a href="#">Profile</a></li>
-                          <li style="height:20px"><a href="#">Users</a></li>
-                          <li style="height:20px"><a href="#">Topics</a></li>
-                          <li style="height:20px"><a href="#">Posts</a></li>
-                          <li style="height:20px"><a href="">Logout</a></li>
-                        </ul>--}%
 
                 </div>
             </div>
