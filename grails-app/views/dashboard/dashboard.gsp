@@ -429,10 +429,11 @@
                     </div>
                     <div class="panel-body">
                         <g:each in="${resources}" var="res" status="i">
+                            <ul class="list-inline">
                             <li>
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <asset:image src="image.jpeg" style="width:70px;height:70px"/></div>
+                                        <asset:image src="${res.createdBy.photo}" style="width:100%px;height:120px"/></div>
                                     <div class="col-sm-9">
                                         <div class="row">
                                             <div class="col-sm-4">
@@ -467,6 +468,7 @@
                                     </div>
                                 </div>
                             </li>
+                            </ul>
                         </g:each>
                     </div>
                 </div>

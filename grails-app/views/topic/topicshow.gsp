@@ -302,11 +302,11 @@
             <div class="panel-body">
                 <g:each in="${resources}" var="res" status="i">
                     <div class="row">
-                        <div class="col-md-4">
-                            <asset:image src="images.jpeg" style="width:60px;height:60px"/>
+                        <div class="col-md-3">
+                            <asset:image src="${res.createdBy.photo}" style="width:100%;height:120px"/>
                         </div>
 
-                        <div class="col-md-8">${res.description}
+                        <div class="col-md-9">${res.description}
                         <div class="row">
                         <div class="col-md-3">
                             <g:if test="${res instanceof project.LinkResource}">
