@@ -59,10 +59,11 @@ class TopicController {
         Subscription sub = Subscription.get(id)
 
         if(sub==null){
-          sub=Subscription.createCriteria().get{
+          subs=Subscription.createCriteria().list{
               eq('topic.id',id)
-              eq('user.id',user.id)
+              /*eq('user.id',user.id)*/
           }
+            sub=subs.getAt(0)
 
         }
 
