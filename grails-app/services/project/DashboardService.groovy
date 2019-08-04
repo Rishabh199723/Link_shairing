@@ -30,7 +30,9 @@ class DashboardService {
     }
 
     def subcount(List<Topic> topicList){
-        def topiccounts = Subscription.createCriteria().list()
+        List<Integer> counts = topicList.collect{it.subscriptions1.size()}
+        return counts
+       /* def topiccounts = Subscription.createCriteria().list()
                 {
                     projections {
                         count('topic.id')
@@ -47,12 +49,14 @@ class DashboardService {
             }
         }.collect { it.getAt(0) }
         println counts
-        return counts
+        return counts*/
     }
 
 
     def countposts(List<Topic> topicList){
-        def topiccounts = Resources.createCriteria().list()
+        List<Integer> counts = topicList.collect{it.resources2.size()}
+        return counts
+       /* def topiccounts = Resources.createCriteria().list()
                 {
                     projections {
                         count('topic.id')
@@ -73,7 +77,7 @@ class DashboardService {
             else
                 it.getAt(0)
         }
-        return counts
+        return counts*/
     }
 
 
@@ -81,7 +85,16 @@ class DashboardService {
 
     def toptopics(){
 
-        List <Long> topicsid=Topic.list().collect{
+        List interTopic = Topic.createCriteria().list{
+            eq('visibility',Visibility.PUBLIC)
+        }.sort{a,b -> b.resources2.size()<=>a.resources2.size()}
+        List<Topic> topicList = []
+        Integer i
+        for(i=0;i<5;i++)
+            if(i<interTopic.size())
+                topicList.add(interTopic[i])
+        return topicList
+        /*List <Long> topicsid=Topic.list().collect{
             if(it.visibility==Visibility.PUBLIC){
                 return it.id
             }
@@ -125,12 +138,14 @@ class DashboardService {
                 topicList.add(Topic.get(finallist[i]))
             }
 
-        return topicList
+        return topicList*/
 
     }
 
     def toptopicposts(trending){
-        List resourcelist = Resources.createCriteria().list()
+        List<Integer> resultCount = trending.collect{it.resources2.size()}
+        return resultCount
+        /*List resourcelist = Resources.createCriteria().list()
                 {
                     projections {
                         count('topic.id')
@@ -158,11 +173,14 @@ class DashboardService {
             it.getAt(0)
         }
         println "top posts"+resultCount
-        return resultCount
+        return resultCount*/
     }
 
     def toptopicsubs(trending){
-        def topiccounts = Subscription.createCriteria().list()
+
+        List<Integer> resultCount = trending.collect{it.subscriptions1.size()}
+        return resultCount
+       /* def topiccounts = Subscription.createCriteria().list()
                 {
                     projections {
                         count('topic.id')
@@ -185,7 +203,7 @@ class DashboardService {
             it.getAt(0)
         }
         println "println topsubs"+resultCount
-        return resultCount
+        return resultCount*/
     }
 
 

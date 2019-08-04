@@ -19,7 +19,7 @@ class DashboardController {
         }
         else{
             List tids=subs.collect{it.topic.id}
-            def topiclist= subs*.topic.collect{it.id}
+            def topiclist= subs*.topic
             List countofsub=dashboardService.subcount(topiclist)
             List countofpost=dashboardService.countposts(topiclist)
             List<Topic> toptopic=dashboardService.toptopics()
@@ -45,7 +45,7 @@ class DashboardController {
             List tids=subs.collect{it.topic.id}
 
             //List subslist=subs.collect{it.id}
-            def topiclist= subs*.topic.collect{it.id}
+            def topiclist= subs*.topic
             List countofsub=dashboardService.subcount(topiclist)
             List countofpost=dashboardService.countposts(topiclist)
 

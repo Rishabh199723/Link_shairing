@@ -9,7 +9,7 @@ class ProfileController {
         Integer topcount=dashboardService.topicCountMethod(session.name)
         Integer subcount=dashboardService.subscriptionCountMethod(session.name)
         List tids=subs.collect{it.topic.id}
-        def topiclist= subs*.topic.collect{it.id}
+        def topiclist= subs*.topic
         List countofsub=dashboardService.subcount(topiclist)
         List countofpost=dashboardService.countposts(topiclist)
         render(view:'profileedit',model: [userdata:user,topcount:topcount,subcounts:subcount,subs:subs,countofsubs:countofsub,countofposts:countofpost])
