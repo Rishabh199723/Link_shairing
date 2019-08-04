@@ -5,7 +5,6 @@ def subscriptionService
     def updateSerious() {
 
         subscriptionService.seriousness(params)
-
         if(params.page=="dashboard"){
             redirect(controller:"Dashboard" ,action:"dashboard")
         }
@@ -40,11 +39,19 @@ def subscriptionService
         Subscription s=Subscription.findById(sid)
         s.delete(flush:true)
 
+        def d=params.td
+
+        println "---------------------${d}"
+
+
         if(params.page=="dashboard"){
             redirect(controller:"Dashboard" ,action:"dashboard")
         }
         else if(params.page=="topic"){
             redirect(controller:"Topic" ,action:"topicshow",params:[id:params.id])
+        }
+        else if(params.page=="viewpost"){
+            redirect(controller:"Topic" ,action:"topicshow",params:[id:d])
         }
     }
 

@@ -46,7 +46,7 @@ class ReadingService {
                 eq("isRead",false)
             }}
         if(Ser){
-            Serious= ReadingItem.createCriteria().list{
+            Serious= Reading_Item.createCriteria().list{
                 projections{
                     property("resource")
                 }

@@ -61,7 +61,7 @@
          <div class="panel-body">
            <div class="container">
              <div class="col-md-4">
-               <h4><a href="#"><strong> <u>Link Sharing</u></strong></a></h4>
+               <h4><a href="/Dashboard/dashboard"><strong> <u>Link Sharing</u></strong></a></h4>
              </div>
              <div class="col-md-3">
                <div class="input-group">
@@ -342,11 +342,15 @@
                                      <i>@${topic.createdBy.username}</i>
                                      <br>
                                      <g:if test="${tids.contains(topic.id)}">
-                                         <a href="#" >Unsubscribe</a> &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}
+
+
+                                         <g:link controller="Subscription" action="unsubscribe" params="[id: topic.id ,td:resource.topic.id,page:"viewpost"]">  Unsubscribe </g:link>  &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}
+
+
                                          <br>
                                      </g:if>
                                      <g:else>
-                                         <a href="#" >subscribe</a> &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}
+                                         <g:link controller="Subscription" action="subscribe" params="[id: topic.id,page:"viewpost"]">  subscribe </g:link>  &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}
                                          <br>
 
                                      </g:else>
