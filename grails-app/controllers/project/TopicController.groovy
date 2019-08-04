@@ -11,8 +11,6 @@ class TopicController {
     {
         println params
         Users user = Users.findByEmail(params.email)
-        if(!user)
-            user = Users.findByUsername(params.email)
         Topic topic = Topic.findByName(params.topic)
         Long topicId = topic.id
         String link = createLink(controller: 'Subscription', action: 'subscribe',params:[id:topicId], absolute: true)

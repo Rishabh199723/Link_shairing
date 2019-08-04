@@ -105,7 +105,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-2 control-label">Email</div>
                                         <div class="col-sm-10">
-                                            <input type="email" required="true" name="email" placeholder="Topic Name"
+                                            <input type="email" required="true" name="email" placeholder="Enter email"
                                                    class="form-control col-sm-8" />
                                         </div>
                                     </div>
@@ -118,7 +118,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-default">Save</button>
+                                            <button type="submit" class="btn btn-default">Send</button>
                                         </div>
                                     </div>
                                 </g:form>
