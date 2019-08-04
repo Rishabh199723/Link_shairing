@@ -77,7 +77,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="${userdata.photo}"></img>
+                                <asset:image src="${userdata.photo}" style="width: 100%; height:100%"/>
                             </div>
                             <div class="col-md-8">
                                 <div style="font-size:23px;"><b>${userdata.fName} &nbsp ${userdata.lName}</b>

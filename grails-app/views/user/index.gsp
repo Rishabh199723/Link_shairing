@@ -247,7 +247,7 @@
                         <br>
                         <div class="row">
                             <div class="col-md-3" style="padding:6px">
-                                <asset:image src="c.jpg" height="150px" width="100%" />
+                                <asset:image src="nitin.jpg" height="150px" width="100%" />
                             </div>
                             <div class="col-md-9">
                                 <div class="row">
@@ -297,7 +297,7 @@
                     <div class="container" id="fullresponsive1" >
                         <div class="row">
                             <div class="col-md-3" style="padding:6px">
-                                <asset:image src="c.jpg" height="150px" width="100%" />
+                                <asset:image src="nitin.jpg" height="150px" width="100%" />
                             </div>
                             <div class="col-md-9">
                                 <div class="row">

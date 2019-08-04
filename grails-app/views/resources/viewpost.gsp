@@ -254,7 +254,7 @@
                                <div class="panel-body">
                                <div class="row">
                                <div class="col-md-2">
-                               <asset:image src="images.jpeg" style="width:70px;height:70px"/></div>
+                               <asset:image src="${resource.createdBy.photo}" style="width:100%;height:100%"/></div>
                                <div class="col-md-4">
                                <div style="font-size:18px;"><b>${resource.createdBy.fName}&nbsp${resource.createdBy.lName}</b></div>
                                <div>@${resource.createdBy.username}</div></div>

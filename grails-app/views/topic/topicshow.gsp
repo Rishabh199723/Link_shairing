@@ -185,12 +185,12 @@
 
     <div class="col-md-5">
 
-        <div class="panel panel-default" style="overflow: auto;height: 200px">
+        <div class="panel panel-default" style="overflow: auto;height: 220px">
             <div class="panel-heading">${subs.topic.name}</div>
 
             <div class="panel-body">
                 <div class="col-md-3">
-                    <g:img uri=""/></div>
+                    <asset:image src="${subs.topic.createdBy.photo}" width="100%" height="100%"></asset:image></div>
 
                 <div class="col-md-9">
                     <div style="font-size:23px;"><b
@@ -235,7 +235,7 @@
         </div>
 
 
-        <div class="panel panel-default" style="overflow: auto;height: 300px">
+        <div class="panel panel-default" style="overflow: auto;height: 350px">
             <div class="panel-heading"><div style="float:left">Users : ${subs.topic.name}</div>
 
                 <div style="margin-left:350px">View all</div>
@@ -247,7 +247,7 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <asset:image src="images.jpeg" style="width:60px;height:60px"/></div>
+                            <asset:image src="${us.user.photo}" style="width:100%;height:100%"></asset:image></div>
 
                         <div class="col-sm-8">
                             <div style="font-size:23px;"><b
