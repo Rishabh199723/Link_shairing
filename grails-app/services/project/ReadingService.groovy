@@ -5,8 +5,6 @@ import grails.transaction.Transactional
 class ReadingService {
     def displayunread(String username) {
         Long id = Users.findByUsername(username).id
-
-
         List<Long> Verys = Subscription.createCriteria().list {
             projections {
                 property("topic")

@@ -1,8 +1,11 @@
 package project
 
+import grails.converters.JSON
+
 class ResourcesController {
     def ratingService
     def dashboardService
+    def resourceService
     def index() {
         List subs=dashboardService.subscriptions(session.name)
         List tids=subs.collect{it.topic.id}
@@ -31,5 +34,13 @@ class ResourcesController {
     def postlist(){
         List resources=Resources.list()
         render(view:'postlist',model:[list:resources])
+    }
+
+
+    def search(){
+
+        List<Resources> resources=resourceService.searchMethod(params,session.uname)
+        String template= g.render( template:"showunread", model:[resources : resources , value:params.value])
+        render (["resources" : template ] as JSON)
     }
 }

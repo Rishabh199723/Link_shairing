@@ -45,15 +45,25 @@
 
 
              <div class ="col-md-2">
-             ${user.username}
-             <li class="fa fa-caret-down"  onclick="Show()"></li>
-             <ul class="nav nav-pills nav-stacked" id="drop" style="display:none">
-               <li style="height:20px"><g:link controller="users" action="editprofile" params="[username:session.username]">Profile</g:link></li>
-               <li style="height:20px"><a href="#">Users</a></li>
-               <li style="height:20px"><a href="#">Topics</a></li>
-               <li style="height:20px"><a href="#">Posts</a></li>
-               <li style="height:20px"><a href="">Logout</a></li>
-             </ul>
+                 <div class="dropdown">
+                     <a href="" data-toggle="dropdown" >${user.username} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                     <ul class="dropdown-menu">
+
+                         <g:if test  = "${user.admin==true}" >
+                             <li><a href="/Profile/editprofile">Profile</a></li>
+                             <li><a href="/UserList/userlist">Users</a></li>
+                             <li><a href="/Topic/topiclist">Topic</a></li>
+                             <li><a href="/Resources/postlist">Posts</a></li>
+                             <li><a href="/User/logout">Logout</a></li>
+                         </g:if>
+                         <g:else>
+                             <li><a href="/Profile/editprofile">Profile</a></li>
+                             <li><a href="/User/logout">Logout</a></li>
+                         </g:else>
+
+
+                     </ul>
+                 </div>
 
              </div>
            </div>
@@ -65,9 +75,9 @@
 
                 <div class="panel-body">
                 <div class="col-md-3">
-                <g:img uri="${user.photo}"/></div>
+                <asset:image src="${user.photo}" style="width: 100%;height: 100%" /></div>
                 <div class="col-md-9">
-                <div style="font-size:23px;"><g:link controller="users" action="profile" ><b>${user.fName} &nbsp ${user.lName}</b></g:link></div>
+                <div style="font-size:23px;"><p ><b>${user.fName} &nbsp ${user.lName}</b></p></div>
                 <div>@${user.username}</div>
 
                 <div class="col-md-6">
@@ -169,7 +179,7 @@
                        <li>
                            <div class="row">
                                <div class="col-md-3">
-                                   <asset:image src="image.jpeg" style="width:70px;height:70px"/></div>
+                                   <asset:image src="${res.createdBy.photo}" style="width:70px;height:70px"/></div>
                                <div class="col-sm-9">
                                    <div class="row">
                                        <div class="col-sm-4">

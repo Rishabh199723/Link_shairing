@@ -9,7 +9,9 @@ class LinkService {
         String url=params.url
         String description=params.description
         String topicname=params.topicname
+        println "}}}}}}}}}}}}}}}}${topicname}"
         Topic topic=Topic.findByName(topicname)
+        println "}}}}}}}}}}}}}}}}${topic}"
         Users user=Users.findByUsername(username)
         LinkResource lr=new LinkResource(link: url , description:description )
         List userlist=Subscription.createCriteria().list{

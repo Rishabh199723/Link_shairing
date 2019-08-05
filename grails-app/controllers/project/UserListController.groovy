@@ -4,8 +4,15 @@ class UserListController {
     static defaultAction = "userlist"
     def UserListService
     def userlist() {
-    def list=UserListService.serviceMethod()
-        render(view:"userlist",model:[lists:list])
+        Users u=Users.findByEmail(session.name)
+        if(u.admin==false){
+            redirect(controller: 'Dashboard',action: 'dashboard')
+        }
+        else{
+            def list=UserListService.serviceMethod()
+            render(view:"userlist",model:[lists:list])
+        }
+
     }
 
     def changePermission()

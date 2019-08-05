@@ -163,7 +163,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-2 control-label">Topic</div>
                                         <div class="col-sm-10">
-                                            <g:select name="topic" from="${subs.topic.name}"
+                                            <g:select name="topicname" from="${subs.topic.name}"
                                                       class="dropdown-toggle btn btn-default col-sm-8"  />
                                         </div>
                                     </div>
@@ -314,6 +314,8 @@
             <br>
     <div class="col-md-6">
 
+        <p style="color:red">${flash.message3}</p>
+
         <div class="panel panel-default">
 
             <div class="panel-body">
@@ -425,15 +427,24 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading"><div style="float:left">Inbox</div>
-                        <div style="margin-left:350px">View all</div>
+                        <div class="input-group" style="margin-left:350px">
+                            <input type="text" class="form-control" placeholder="Search" id="search" onkeyup="searchfun()"/>
+
+                            <div class="input-group-btn">
+                                <button class="btn btn-basic" type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        <g:each in="${resources}" var="res" status="i">
+                    <div class="panel-body" id="showResources">
+                        <g:render template="/resources/showunread" model="['resources' : resources]" />
+                        %{--<g:each in="${resources}" var="res" status="i">
                             <ul class="list-inline">
                             <li>
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <asset:image src="${res.createdBy.photo}" style="width:100%px;height:120px"/></div>
+                                        <asset:image src="${res.createdBy.photo}" style="width:100%;height:120px"/></div>
                                     <div class="col-sm-9">
                                         <div class="row">
                                             <div class="col-sm-4">
@@ -469,7 +480,7 @@
                                 </div>
                             </li>
                             </ul>
-                        </g:each>
+                        </g:each>--}%
                     </div>
                 </div>
             </div>
@@ -481,6 +492,28 @@
 </div>
 </body>
 <script>
+    function searchfun() {
+        var input, filter;
+
+
+        input = document.getElementById("search");
+        filter = input.value.toLowerCase();
+        var url="${createLink(controller:'Resources',action:'search')}"
+
+        $.ajax({
+            "url":     url,
+            "type":    "get",
+            "data":    {value : filter},
+            success: function(resp){
+                console.log(resp.resources)
+                document.getElementById("showResources").innerHTML=resp.resources
+
+            }
+        });
+
+
+    }
+
     function Show()
     {
         document.getElementById("drop").style.display="block";

@@ -3,6 +3,7 @@ package project
 class LinkController {
 def linkService
     def save() {
+        println "${params.topicname}"
         linkService.saveMethod(params,session.uname)
         redirect(controller:"Dashboard" , action:"dashboard")
 

@@ -32,9 +32,21 @@ class TopicController {
 
     def topics() {
         println "IN TOPIC ==============================="
-        topicService.serviceMethod(session.name, params)
 
-        redirect(controller: "Dashboard", action: "dashboard")
+        Topic t=Topic.findByName(params.topicName)
+        if(t){
+            flash.message3="Topic already created"
+            redirect(controller: "Dashboard", action: "dashboard")
+        }
+        else {
+            topicService.serviceMethod(session.name, params)
+            redirect(controller: "Dashboard", action: "dashboard")
+
+        }
+
+
+
+
     }
 
     def topiclist() {
