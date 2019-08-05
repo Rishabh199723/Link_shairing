@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <meta name="layout" content="main"/>
     <!--[if IE]>
                <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
                <![endif]-->
-    <title>LINK SHARING APPLICATION</title>
+%{--    <title>LINK SHARING APPLICATION</title>--}%
     <!-- BOOTSTRAP CORE STYLE  -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>
 
@@ -510,12 +511,11 @@
 
             }
         });
-
-
     }
 
     function Show()
     {
+        console.log("hey")
         document.getElementById("drop").style.display="block";
     }
 </script>
