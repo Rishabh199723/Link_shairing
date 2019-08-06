@@ -9,7 +9,6 @@ class DocumentService {
     def saveMethod(params,username,request) {
         String topicname=params.topicname
         String description=params.description
-        println"-------++++++++++++++++++++++"
         def f = request.getFile($/doc/$)
         String filename=f.getOriginalFilename()
         String loc='/home/rishabh/project/grails-app/assets/documents/' + username + filename
@@ -19,6 +18,7 @@ class DocumentService {
         f.transferTo(des)
         String url=username+filename
         DocumentResource dr=new DocumentResource(documentpath: url , description:description)
+
         List userlist=Subscription.createCriteria().list{
             eq('topic.id',topic.id)
             ne('user.id',user.id)

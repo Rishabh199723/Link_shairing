@@ -42,6 +42,9 @@ dependencies {
     compile 'org.grails.plugins:mail:2.0.0'
     compile 'org.grails.plugins:grails-console:2.0.0'
     console "org.grails:grails-console"
+/*
+    compile "org.grails.plugins:spring-security-core:3.1.2"
+*/
     profile "org.grails.profiles:web"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.14.1"
     runtime "com.h2database:h2"

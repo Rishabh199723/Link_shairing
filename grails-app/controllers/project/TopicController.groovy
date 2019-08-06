@@ -103,7 +103,7 @@ class TopicController {
 
         List resourcelist=resource.collect{it.id}
         if(!resourcelist){
-            render(view:"topicshow" ,model : [read:[],user:user,tids:tids,subs:sub , subscount:subscount , postcount : postcount , subscription:subscription,subscriptioncount:subscriptioncount , postscount:postscount,resources:resource])
+            render(view:"topicshow" ,model : [read:[],userdata:user,tids:tids,subs:sub , subscount:subscount , postcount : postcount , subscription:subscription,subscriptioncount:subscriptioncount , postscount:postscount,resources:resource])
 
         }
         else{
@@ -113,7 +113,7 @@ class TopicController {
             }
             println "------------------------"
 
-            render(view:"topicshow" ,model : [read:read,user:user,tids:tids,subs:sub , subscount:subscount , postcount : postcount , subscription:subscription,subscriptioncount:subscriptioncount , postscount:postscount,resources:resource])
+            render(view:"topicshow" ,model : [read:read,userdata:user,tids:tids,subs:sub , subscount:subscount , postcount : postcount , subscription:subscription,subscriptioncount:subscriptioncount , postscount:postscount,resources:resource])
 
         }
 

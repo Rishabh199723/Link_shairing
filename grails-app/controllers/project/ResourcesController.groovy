@@ -21,7 +21,7 @@ class ResourcesController {
         List<Integer> toptopicsubs=dashboardService.toptopicsubs(trending)
 
 
-        render(view : "viewpost" , model:[rating:rating,resource:res , trending:trending,userdata:user,tids:tids,toptopicsub:toptopicsubs,toptopicpost:toptopicposts])
+        render(view : "viewpost" , model:[subs:subs,rating:rating,resource:res , trending:trending,userdata:user,tids:tids,toptopicsub:toptopicsubs,toptopicpost:toptopicposts])
     }
 
     def deletepost(){

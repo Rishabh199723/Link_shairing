@@ -42,10 +42,10 @@ grails {
             accept {
                 header {
                     userAgents = [
-                        'Gecko',
-                        'WebKit',
-                        'Presto',
-                        'Trident'
+                            'Gecko',
+                            'WebKit',
+                            'Presto',
+                            'Trident'
                     ]
                 }
             }
@@ -57,25 +57,25 @@ grails {
             csv = 'text/csv'
             form = 'application/x-www-form-urlencoded'
             html = [
-                'text/html',
-                'application/xhtml+xml'
+                    'text/html',
+                    'application/xhtml+xml'
             ]
             js = 'text/javascript'
             json = [
-                'application/json',
-                'text/json'
+                    'application/json',
+                    'text/json'
             ]
             multipartForm = 'multipart/form-data'
             pdf = 'application/pdf'
             rss = 'application/rss+xml'
             text = 'text/plain'
             hal = [
-                'application/hal+json',
-                'application/hal+xml'
+                    'application/hal+json',
+                    'application/hal+xml'
             ]
             xml = [
-                'text/xml',
-                'application/xml'
+                    'text/xml',
+                    'application/xml'
             ]
         }
     }
@@ -104,6 +104,16 @@ grails {
                 staticparts = 'none'
             }
         }
+    }
+    mail {
+        host = "smtp.gmail.com"
+        port = 465
+        username = "rishabhgupta199723@gmail.com"
+        password = "bioshock3"
+        props = ["mail.smtp.auth"                  : "true",
+                 "mail.smtp.socketFactory.port"    : "465",
+                 "mail.smtp.socketFactory.class"   : "javax.net.ssl.SSLSocketFactory",
+                 "mail.smtp.socketFactory.fallback": "false"]
     }
 }
 
@@ -135,7 +145,7 @@ environments {
             url = 'jdbc:oracle:thin:@localhost:1521/orcl'
             username = 'admin'
             password = 'admin'
-            properties= oracleProperties
+            properties = oracleProperties
 
         }
     }
@@ -171,3 +181,33 @@ environments {
         }
     }
 }
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'project.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'project.UserRole'
+grails.plugin.springsecurity.authority.className = 'project.Role'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	[pattern: '/',               access: ['permitAll']],
+	[pattern: '/error',          access: ['permitAll']],
+	[pattern: '/index',          access: ['permitAll']],
+	[pattern: '/index.gsp',      access: ['permitAll']],
+	[pattern: '/shutdown',       access: ['permitAll']],
+	[pattern: '/assets/**',      access: ['permitAll']],
+	[pattern: '/**/js/**',       access: ['permitAll']],
+	[pattern: '/**/css/**',      access: ['permitAll']],
+	[pattern: '/**/images/**',   access: ['permitAll']],
+	[pattern: '/**/favicon.ico', access: ['permitAll']],
+    [pattern: '/dbconsole/**',   access: ['permitAll']]
+
+]
+
+grails.plugin.springsecurity.filterChain.chainMap = [
+	[pattern: '/assets/**',      filters: 'none'],
+	[pattern: '/**/js/**',       filters: 'none'],
+	[pattern: '/**/css/**',      filters: 'none'],
+	[pattern: '/**/images/**',   filters: 'none'],
+	[pattern: '/**/favicon.ico', filters: 'none'],
+	[pattern: '/**',             filters: 'JOINED_FILTERS']
+]
+
