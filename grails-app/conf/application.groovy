@@ -184,10 +184,18 @@ environments {
 
 
 
+
+
+
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'project.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'project.UserRole'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'project.Users'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'project.UsersRole'
 grails.plugin.springsecurity.authority.className = 'project.Role'
+grails.plugin.springsecurity.logout.postOnly=false
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/dashboard/dashboard'
+/*
+grails.plugin.springsecurity.userLookup.usernamePropertyName='email'
+*/
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
@@ -198,7 +206,9 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/**/js/**',       access: ['permitAll']],
 	[pattern: '/**/css/**',      access: ['permitAll']],
 	[pattern: '/**/images/**',   access: ['permitAll']],
-	[pattern: '/**/favicon.ico', access: ['permitAll']]
+	[pattern: '/**/favicon.ico', access: ['permitAll']],
+    [pattern: '/dbconsole/**', access: ['permitAll']]
+
 ]
 
 grails.plugin.springsecurity.filterChain.chainMap = [

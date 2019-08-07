@@ -1,15 +1,19 @@
 package project
 
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 
 class ResourcesController {
     def ratingService
     def dashboardService
     def resourceService
+    def springSecurityService
     def index() {
-        List subs=dashboardService.subscriptions(session.name)
+        List subs=dashboardService.subscriptions(springSecurityService.currentUser?.email)
         List tids=subs.collect{it.topic.id}
-        Users user=Users.findByEmail(session.name)
+        Users user=Users.findByEmail(springSecurityService.currentUser?.email)
         Resources res=Resources.get(params.id)
         List trending=dashboardService.toptopics()
         def rating=ratingService.readMethod(user.username,res)
@@ -39,7 +43,7 @@ class ResourcesController {
 
     def search(){
 
-        List<Resources> resources=resourceService.searchMethod(params,session.uname)
+        List<Resources> resources=resourceService.searchMethod(params,springSecurityService.currentUser?.username)
         String template= g.render( template:"showunread", model:[resources : resources , value:params.value])
         render (["resources" : template ] as JSON)
     }

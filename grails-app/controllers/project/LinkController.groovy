@@ -1,10 +1,14 @@
 package project
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 class LinkController {
 def linkService
+    def springSecurityService
     def save() {
         println "${params.topicname}"
-        linkService.saveMethod(params,session.uname)
+        linkService.saveMethod(params,springSecurityService.currentUser?.username)
         redirect(controller:"Dashboard" , action:"dashboard")
 
     }
@@ -13,7 +17,7 @@ def linkService
         def description=params.description
         Long id=Long.parseLong(params.id)
         LinkResource lr=LinkResource.get(id)
-        Users user=Users.findByEmail(session.name)
+        Users user=Users.findByEmail(springSecurityService.currentUser?.email)
         lr.link=link
         lr.description=description
         lr.save(flush:true)

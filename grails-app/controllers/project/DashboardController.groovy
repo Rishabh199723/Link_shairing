@@ -1,15 +1,19 @@
 package project
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 class DashboardController {
     def dashboardService
+    def springSecurityService
     def readingService
     def index() {}
 
     def dashboard() {
-        Users user = Users.findByEmail(session.name)
-        Integer topcount=dashboardService.topicCountMethod(session.name)
-        Integer subcount=dashboardService.subscriptionCountMethod(session.name)
-        List subs=dashboardService.subscriptions(session.name)
+        Users user = Users.findByEmail(springSecurityService.currentUser?.email)
+        Integer topcount=dashboardService.topicCountMethod(springSecurityService.currentUser?.email)
+        Integer subcount=dashboardService.subscriptionCountMethod(springSecurityService.currentUser?.email)
+        List subs=dashboardService.subscriptions(springSecurityService.currentUser?.email)
         if(!subs){
             List<Topic> toptopic=dashboardService.toptopics()
             List<Integer> toptopicposts=dashboardService.toptopicposts(toptopic)
@@ -25,8 +29,7 @@ class DashboardController {
             List<Topic> toptopic=dashboardService.toptopics()
             List<Integer> toptopicposts=dashboardService.toptopicposts(toptopic)
             List<Integer> toptopicsubs=dashboardService.toptopicsubs(toptopic)
-            List resources=readingService.displayunread(session.uname)
-
+            List resources=readingService.displayunread(springSecurityService.currentUser?.username)
             render(view: 'dashboard',model: [userdata:user,tids:tids,topcount:topcount,subcounts:subcount,subs:subs,countofsubs:countofsub,countofposts:countofpost,toptopics:toptopic,toptopicpost:toptopicposts,toptopicsub:toptopicsubs,resources:resources])
 
 

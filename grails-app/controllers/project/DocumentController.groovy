@@ -1,7 +1,11 @@
 package project
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 class DocumentController {
-def documentService
+    def documentService
+    def springSecurityService
 
     def download()
     {
@@ -9,7 +13,7 @@ def documentService
         Long id=Long.parseLong(params.id)
         DocumentResource dr = (DocumentResource) Resources.get(id)
         //Users user = session.user
-        Users user=Users.findByEmail(session.name)
+        Users user=Users.findByEmail(springSecurityService.currentUser?.email)
         def file=new File("/home/rishabh/Downloads/${user}.txt")
         def temp = new File("/home/rishabh/project/grails-app/assets/documents/"+dr.documentpath)
         if (temp.exists()) {
@@ -30,7 +34,7 @@ def documentService
 
     def save()
     {
-        documentService.saveMethod(params,session.uname,request)
+        documentService.saveMethod(params,springSecurityService.currentUser?.username,request)
         redirect(controller:"Dashboard" , action:"dashboard")
     }
 
@@ -40,7 +44,7 @@ def documentService
         def file=request.getFile('doc')
         Long id=Long.parseLong(params.id)
         String filename=file.getOriginalFilename()
-        Users user=Users.findByEmail(session.name)
+        Users user=Users.findByEmail(springSecurityService.currentUser?.email)
         Topic topic=Resources.get(id).topic
         String path='/home/rishabh/project/grails-app/assets/documents/'+filename
         def file1=new File(path)

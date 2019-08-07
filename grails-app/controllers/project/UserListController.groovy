@@ -1,10 +1,15 @@
 package project
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN','ROLE_USER'])
+
 class UserListController {
     static defaultAction = "userlist"
-    def UserListService
+    def userListService
+    def springSecurityService
     def userlist() {
-        Users u=Users.findByEmail(session.name)
+        Users u=Users.findByEmail(springSecurityService.currentUser?.email)
         if(u.admin==false){
             redirect(controller: 'Dashboard',action: 'dashboard')
         }

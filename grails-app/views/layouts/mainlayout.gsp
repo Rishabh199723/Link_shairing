@@ -299,11 +299,11 @@
                                 <li><a href="/UserList/userlist">Users</a></li>
                                 <li><a href="/Topic/topiclist">Topic</a></li>
                                 <li><a href="/Resources/postlist">Posts</a></li>
-                                <li><a href="/User/logout">Logout</a></li>
+                                <li><a href="/logout">Logout</a></li>
                             </g:if>
                             <g:else>
                                 <li><a href="/Profile/editprofile">Profile</a></li>
-                                <li><a href="/User/logout">Logout</a></li>
+                                <li><a href="/logout">Logout</a></li>
                             </g:else>
 
 

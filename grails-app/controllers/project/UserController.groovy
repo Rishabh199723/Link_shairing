@@ -1,5 +1,8 @@
 package project
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 
 class UserController {
     def registerService
@@ -18,7 +21,7 @@ class UserController {
 
     }
 
-    def signup() {
+  /*  def signup() {
         def login = registerService.loginMethod(params)
 
 
@@ -42,13 +45,13 @@ class UserController {
 
 
 
-    }
+    }*/
 
-    def logout() {
+   /* def logout() {
         session.invalidate()
         redirect(url: '/')
     }
-
+*/
 
     def passreset() {
         println "+++++++++]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]"

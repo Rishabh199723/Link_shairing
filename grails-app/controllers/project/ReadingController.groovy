@@ -1,18 +1,22 @@
 package project
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 
 class ReadingController {
 
     def readingService
+    def springSecurityService
 
     def editread()
     {
-        if(!session.uname)
+        if(!springSecurityService.currentUser?.username)
         {
             render("please login first")
         }
         else{
-            readingService.editreadMethod(params,session.uname)
+            readingService.editreadMethod(params,springSecurityService.currentUser?.username)
             redirect(controller : "Dashboard" ,action : "dashboard")
         }}
     def delete()

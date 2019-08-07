@@ -1,10 +1,14 @@
 package project
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 class TopicController {
     static defaultAction = "topics"
     def topicService
     def topiclistService
     def dashboardService
+    def springSecurityService
 
 
     def sendInvite()
@@ -39,7 +43,7 @@ class TopicController {
             redirect(controller: "Dashboard", action: "dashboard")
         }
         else {
-            topicService.serviceMethod(session.name, params)
+            topicService.serviceMethod(springSecurityService.currentUser?.email, params)
             redirect(controller: "Dashboard", action: "dashboard")
 
         }
@@ -61,8 +65,8 @@ class TopicController {
     }
 
     def topicshow() {
-        Users user=Users.findByEmail(session.name)
-        List subs=dashboardService.subscriptions(session.name)
+        Users user=Users.findByEmail(springSecurityService.currentUser?.email)
+        List subs=dashboardService.subscriptions(springSecurityService.currentUser?.email)
         List tids=subs.collect{it.topic.id}
         Long tid=0.0
         Long id = Long.parseLong(params.id)

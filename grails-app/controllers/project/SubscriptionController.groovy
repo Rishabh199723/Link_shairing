@@ -1,7 +1,12 @@
 package project
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN','ROLE_USER'])
+
 class SubscriptionController {
 def subscriptionService
+    def springSecurityService
     def updateSerious() {
 
         subscriptionService.seriousness(params)
@@ -19,7 +24,7 @@ def subscriptionService
 
         println params.id
         Long sid = 0.0
-        Users user=Users.findByEmail(session.name)
+        Users user=Users.findByEmail(springSecurityService.currentUser?.email)
         Subscription su=Subscription.findById(params.id)
         if(su instanceof project.Subscription) {
              sid = Long.parseLong(params.id)
@@ -58,7 +63,7 @@ def subscriptionService
     def subscribe(params){
 
 
-            Users user=Users.findByEmail(session.name)
+            Users user=Users.findByEmail(springSecurityService.currentUser?.email)
             Long topid = Long.parseLong(params.id)
             Topic t=Topic.get(topid)
             Subscription s=Subscription.findByTopicAndUser(t,user)

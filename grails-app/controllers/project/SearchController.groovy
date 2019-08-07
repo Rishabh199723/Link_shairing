@@ -1,5 +1,9 @@
 package project
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN','ROLE_USER'])
+
 class SearchController {
     def searchService
     def index() {

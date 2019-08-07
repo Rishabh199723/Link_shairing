@@ -5,11 +5,39 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        Users u1=new Users(username : 'nitin' , fName :'nitin'  , lName : 'nepalia' , password : 'nitin' , admin : false , active : true , email : 'nitin.nepalia@gmail.com',photo:'nitin.jpg' )
-        Users u2=new Users(username : 'saurabh' , fName :'saurabh'  , lName : 'kumar' , password : 'saurabh' , admin : false , active : true , email : 'saurabh@gmail.com')
-        Users u3=new Users(username : 'aman' , fName :'aman'  , lName : 'aggarwal' , password : 'aman' , admin : false , active : true , email : 'aman@gmail.com',photo:'default.jpg')
-        Users u4=new Users(username : 'rishabh' , fName :'rishabh'  , lName : 'gupta' , password : 'rishabh' , admin : true , active : true , email : 'rishabhgupta199723@gmail.com',photo: 'rishabh.jpg')
-        u1.save(flush:true,failOnError:true)
+        def adminRole=Role.findOrSaveWhere(authority: 'ROLE_ADMIN')
+        def userRole=Role.findOrSaveWhere(authority: 'ROLE_USER')
+
+        def u1=Users.findOrSaveWhere(username : 'nitin' , fName :'nitin'  , lName : 'nepalia' , password : 'nitin' , admin : false , active : true , email : 'nitin.nepalia@gmail.com',photo:'nitin.jpg')
+        def u4=Users.findOrSaveWhere(username : 'rishabh' , fName :'rishabh'  , lName : 'gupta' , password : 'rishabh' , admin : true , active : true , email : 'rishabhgupta199723@gmail.com',photo: 'rishabh.jpg')
+        def u2=Users.findOrSaveWhere(username : 'saurabh' , fName :'saurabh'  , lName : 'kumar' , password : 'saurabh' , admin : false , active : true , email : 'saurabh@gmail.com')
+        def u3=Users.findOrSaveWhere(username : 'aman' , fName :'aman'  , lName : 'aggarwal' , password : 'aman' , admin : false , active : true , email : 'aman@gmail.com',photo:'default.jpg')
+
+
+        if(!u4.authorities.contains(adminRole)){
+            UsersRole.create(u4,adminRole,true)
+            println "inside"
+        }
+        if(!u1.authorities.contains(userRole)){
+            UsersRole.create(u1,userRole,true)
+        }
+        if(!u2.authorities.contains(userRole)){
+            UsersRole.create(u2,userRole,true)
+        }
+        if(!u3.authorities.contains(userRole)){
+            UsersRole.create(u3,userRole,true)
+        }
+
+
+
+
+
+        //Users1 u1=new Users1(username : 'nitin' , fName :'nitin'  , lName : 'nepalia' , password : 'nitin' , admin : false , active : true , email : 'nitin.nepalia@gmail.com',photo:'nitin.jpg' )
+        //Users u2=new Users(username : 'saurabh' , fName :'saurabh'  , lName : 'kumar' , password : 'saurabh' , admin : false , active : true , email : 'saurabh@gmail.com')
+        //Users u3=new Users(username : 'aman' , fName :'aman'  , lName : 'aggarwal' , password : 'aman' , admin : false , active : true , email : 'aman@gmail.com',photo:'default.jpg')
+        //Users1 u4=new Users1(username : 'rishabh' , fName :'rishabh'  , lName : 'gupta' , password : 'rishabh' , admin : true , active : true , email : 'rishabhgupta199723@gmail.com',photo: 'rishabh.jpg')
+
+        //u1.save(flush:true,failOnError:true)
         Topic topic1 = new Topic(name:"html",visibility: "PUBLIC")
         Topic topic2 = new Topic(name:"css",visibility: "PUBLIC")
         Topic topic3 = new Topic(name:"javascript",visibility: "PUBLIC")
