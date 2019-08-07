@@ -27,7 +27,7 @@ class ResourcesController {
         List<Integer> toptopicsubs=dashboardService.toptopicsubs(trending)
 
 
-        render(view : "viewpost" , model:[subs:subs,rating:rating,resource:res , trending:trending,userdata:user,tids:tids,toptopicsub:toptopicsubs,toptopicpost:toptopicposts])
+        render(view : "viewpost" , model:[subs:subs,rating:rating,resource:res , toptopics:trending,userdata:user,tids:tids,toptopicsub:toptopicsubs,toptopicpost:toptopicposts])
     }
     @Secured(['ROLE_ADMIN','ROLE_USER'])
     def deletepost(){
