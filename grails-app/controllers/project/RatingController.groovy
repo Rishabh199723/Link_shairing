@@ -7,6 +7,7 @@ import grails.plugin.springsecurity.annotation.Secured
 class RatingController {
     def ratingService
     def save() {
+
         ratingService.saveMethod(params)
     }
 }

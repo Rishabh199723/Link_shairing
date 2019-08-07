@@ -6,8 +6,8 @@ import grails.transaction.Transactional
 class UserListService {
 
 
-    def serviceMethod() {
-    def user=Users.list()
+    def getuserlist() {
+    List user=Users.list()
         return user
     }
 

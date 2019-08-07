@@ -130,7 +130,7 @@
                                     </div>
                                 </g:form>
 
-                            </div>
+                            </div>    @Secured(['ROLE_ADMIN','ROLE_USER'])
                         </div>
                     </div></div>
 

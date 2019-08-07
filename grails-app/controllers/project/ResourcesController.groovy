@@ -10,6 +10,8 @@ class ResourcesController {
     def dashboardService
     def resourceService
     def springSecurityService
+
+    @Secured(['ROLE_ADMIN','ROLE_USER'])
     def index() {
         List subs=dashboardService.subscriptions(springSecurityService.currentUser?.email)
         List tids=subs.collect{it.topic.id}
@@ -27,20 +29,20 @@ class ResourcesController {
 
         render(view : "viewpost" , model:[subs:subs,rating:rating,resource:res , trending:trending,userdata:user,tids:tids,toptopicsub:toptopicsubs,toptopicpost:toptopicposts])
     }
-
+    @Secured(['ROLE_ADMIN','ROLE_USER'])
     def deletepost(){
         Resources res=Resources.findById(params.id)
         res.delete(flush:true)
         redirect(controller:'Dashboard',action:'dashboard')
 
     }
-
+    @Secured(['ROLE_ADMIN'])
     def postlist(){
         List resources=Resources.list()
         render(view:'postlist',model:[list:resources])
     }
 
-
+    @Secured(['ROLE_ADMIN','ROLE_USER'])
     def search(){
 
         List<Resources> resources=resourceService.searchMethod(params,springSecurityService.currentUser?.username)

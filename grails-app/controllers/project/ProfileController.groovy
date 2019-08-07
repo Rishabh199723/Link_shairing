@@ -2,12 +2,13 @@ package project
 
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(['ROLE_ADMIN','ROLE_USER'])
 
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 class ProfileController {
     def dashboardService
     def profileService
     def springSecurityService
+
     def editprofile() {
         Users user = Users.findByEmail(springSecurityService.currentUser?.email)
         List subs=dashboardService.subscriptions(springSecurityService.currentUser?.email)

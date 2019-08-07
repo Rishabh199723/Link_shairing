@@ -101,7 +101,7 @@
          </div>
          <div class="panel-body">
           <g:each in="${subscriptions}" var="us" status="i">
-          <g:if test = "${us.topic.createdBy.username==session.uname}">
+          <g:if test = "${us.topic.createdBy.username==user.username}">
               <ul class="list-inline">
               <li>
               <div class="row">

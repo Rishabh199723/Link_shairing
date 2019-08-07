@@ -38,13 +38,13 @@ class DashboardController {
 
     def viewprofile() {
 
-        if (!session.uname) {
+        if (!springSecurityService.currentUser?.email) {
             render("please login first")
         } else {
-            Users user = Users.findByUsername(session.uname)
-            Integer topcount=dashboardService.topicCountMethod(session.name)
-            Integer subcount=dashboardService.subscriptionCountMethod(session.name)
-            List subs=dashboardService.subscriptions(session.name)
+            Users user = Users.findByUsername(springSecurityService.currentUser?.username)
+            Integer topcount=dashboardService.topicCountMethod(springSecurityService.currentUser?.email)
+            Integer subcount=dashboardService.subscriptionCountMethod(springSecurityService.currentUser?.email)
+            List subs=dashboardService.subscriptions(springSecurityService.currentUser?.email)
             List tids=subs.collect{it.topic.id}
 
             //List subslist=subs.collect{it.id}
