@@ -13,12 +13,8 @@
 
 <body >
 <br>
-
-
     <g:render template="editlink"/>
-
     <g:render template="editdoc"/>
-
     <div class="container">
         <div class="row">
             <div class="col-md-6">

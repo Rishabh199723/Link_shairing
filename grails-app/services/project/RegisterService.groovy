@@ -8,7 +8,9 @@ class RegisterService {
 
     def serviceMethod(params,request) {
 
-        if(params.confirm_password.equals(params.password)==true){
+        println params
+
+        /*if(params.confirm_password.equals(params.password)==true){
             String email = params.email
             String username = params.username
             def dec = request.getFile('photo')
@@ -45,7 +47,7 @@ class RegisterService {
         }
         else{
             return 0
-        }
+        }*/
 
     }
 
