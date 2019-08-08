@@ -16,7 +16,7 @@
            <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
            <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
        	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.m    in.js"></script>
 </head>
 <body>
    <div class="container"><br>
@@ -39,17 +39,12 @@
                </g:form>
              </div>
              <div class= "col-md-3">
-
-
              </div>
-
-
              <div class ="col-md-2">
                  <div class="dropdown">
                      <a href="" data-toggle="dropdown" >${user.username} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                      <ul class="dropdown-menu">
-
-                         <g:if test  = "${user.admin==true}" >
+                         <g:if test = "${user.admin==true}" >
                              <li><a href="/Profile/editprofile">Profile</a></li>
                              <li><a href="/UserList/userlist">Users</a></li>
                              <li><a href="/Topic/topiclist">Topic</a></li>
@@ -60,8 +55,6 @@
                              <li><a href="/Profile/editprofile">Profile</a></li>
                              <li><a href="/User/logout">Logout</a></li>
                          </g:else>
-
-
                      </ul>
                  </div>
 
@@ -70,7 +63,6 @@
          </div>
        </div>
        <div class="col-md-5">
-
 <g:render template="profileinfo"/>
 <g:render template="topiccreated"/>
 <g:render template="subscriptions"/>
@@ -79,5 +71,6 @@
        </div>
    </div>
 </body>
+</html>
 
 

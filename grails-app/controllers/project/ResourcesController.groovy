@@ -34,17 +34,14 @@ class ResourcesController {
         Resources res=Resources.findById(params.id)
         res.delete(flush:true)
         redirect(controller:'Dashboard',action:'dashboard')
-
     }
     @Secured(['ROLE_ADMIN'])
     def postlist(){
         List resources=Resources.list()
         render(view:'postlist',model:[list:resources])
     }
-
     @Secured(['ROLE_ADMIN','ROLE_USER'])
     def search(){
-
         List<Resources> resources=resourceService.searchMethod(params,springSecurityService.currentUser?.username)
         String template= g.render( template:"showunread", model:[resources : resources , value:params.value])
         render (["resources" : template ] as JSON)

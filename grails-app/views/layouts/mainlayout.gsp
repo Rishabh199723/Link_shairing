@@ -32,7 +32,7 @@
         <div class="panel-body">
             <div class="container">
                 <div class="col-md-4">
-                    <h4><a href="#"><strong> <u>Link Sharing</u></strong></a></h4>
+                    <h4><a href="/dashboard/dashboard"><strong> <u>Link Sharing</u></strong></a></h4>
                 </div>
                 <div class="col-md-3">
                     <g:form controller="search" action="index">
@@ -48,14 +48,12 @@
                 </div>
                 <div class= "col-md-3">
                     <ul class="nav navbar-nav">
-
                         <li><a href="" data-toggle="modal" data-target="#createtopic" ><span class="glyphicon glyphicon-comment"></span></a></li>
                         <li><a href="" data-toggle="modal" data-target="#sendinvitation" ><span class="glyphicon glyphicon-envelope"></span></a></li>
                         <li><a href="" data-toggle="modal" data-target="#sharelink"><span class="glyphicon glyphicon-link"></span></a></li>
                         <li><a href="" data-toggle="modal" data-target="#sharedocument"><span class="glyphicon glyphicon-file"></span></a></li>
 
                     </ul>
-
                 </div>
 
                 %{--MODEL FOR CREATE TOPIC---------------------------------------------------------}%

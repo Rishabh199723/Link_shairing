@@ -18,7 +18,6 @@ class UserListController {
             List list=userListService.getuserlist()
             render(view:'userlist',model:[lists:list])
         }
-
     }
     @Secured(['ROLE_ADMIN'])
     def changePermission()
