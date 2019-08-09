@@ -26,10 +26,11 @@
             <div class="panel-heading">Reset Password</div>
             <div class="panel-body">
                 <g:form class="form-horizontal" url="[controller:'User',action:'changepassword']">
+                    <g:field type="hidden" name="email" value="${email}"/>
                     <div class="form-group">
-                        <text class="control-label col-md-4" for="email"  style="text-align: left;">Email/Username *</text>
+                        <text class="control-label col-md-4" for="email"  style="text-align: left;">OTP *</text>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="loginemail"  name="email" value="${email}">
+                            <input type="text" class="form-control" id="loginemail"  name="otp" >
                         </div>
                     </div>
                     <div class="form-group">

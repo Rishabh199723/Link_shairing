@@ -8,6 +8,7 @@ class UserController {
     def registerService
     def mailService
 
+
     def index() {
 
         def sign = registerService.serviceMethod(params,request)
@@ -56,11 +57,16 @@ class UserController {
         println params.email
         Users user=Users.findByEmail(params.email)
 //        println "{{{{{{{{{{{{${user.email}"
+        def num=Math.random()
+        def num1=num*1000000
+        def token=(int)num1
+        user.token=token.toString()
+        user.save(flush:true)
         String link=createLink(controller:'User' ,action:'resetpass' ,params:[email:user.email],absolute: true)
          mailService.sendMail( {
             to "${user.email}"
             subject "Hello ${user.username} .Change password link "
-            text link
+            text link+"    .Your otp is${token}."
         })
     }
 
@@ -71,10 +77,18 @@ class UserController {
 
     def changepassword(){
         Users user=Users.findByEmail(params.email)
-        user.password=params.password
-        user.save(flush:true)
-        flash.message="Password changed "
-        redirect(url:"/")
+
+        if((params.otp.toString()).equals(user.token)==true){
+            user.password=params.password
+            user.save(flush:true)
+            flash.message="Password changed "
+            redirect(url:"/")
+        }
+        else{
+            flash.message="Wrong Otp entered"
+            redirect(url:"/")
+        }
+
     }
 
 
