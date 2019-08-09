@@ -195,9 +195,7 @@ grails.plugin.springsecurity.logout.postOnly=false
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/dashboard/dashboard'
 grails.plugin.springsecurity.password.algorithm = 'SHA-256'
 //grails.plugin.springsecurity.password.hash.iterations = 1
-/*
 grails.plugin.springsecurity.userLookup.usernamePropertyName='email'
-*/
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],

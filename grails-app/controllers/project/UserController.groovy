@@ -53,14 +53,13 @@ class UserController {
 */
 
     def passreset() {
-        println "+++++++++]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]"
         println params.email
         Users user=Users.findByEmail(params.email)
-        println "{{{{{{{{{{{{${user.email}"
+//        println "{{{{{{{{{{{{${user.email}"
         String link=createLink(controller:'User' ,action:'resetpass' ,params:[email:user.email],absolute: true)
          mailService.sendMail( {
             to "${user.email}"
-            subject "Hello${user.username} .Change password link "
+            subject "Hello ${user.username} .Change password link "
             text link
         })
     }
