@@ -193,6 +193,8 @@ grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'project.UsersR
 grails.plugin.springsecurity.authority.className = 'project.Role'
 grails.plugin.springsecurity.logout.postOnly=false
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/dashboard/dashboard'
+grails.plugin.springsecurity.password.algorithm = 'SHA-256'
+//grails.plugin.springsecurity.password.hash.iterations = 1
 /*
 grails.plugin.springsecurity.userLookup.usernamePropertyName='email'
 */
@@ -207,7 +209,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/**/css/**',      access: ['permitAll']],
 	[pattern: '/**/images/**',   access: ['permitAll']],
 	[pattern: '/**/favicon.ico', access: ['permitAll']],
-    [pattern: '/dbconsole/**', access: ['permitAll']]
+    [pattern: '/dbconsole/**', access: ['permitAll']],
+    [pattern: '/**'           ,  access:['isFullyAuthenticated()']]
 
 ]
 

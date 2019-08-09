@@ -2,22 +2,21 @@ package project
 
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(['ROLE_ADMIN','ROLE_USER'])
-
+//@Secured(['ROLE_ADMIN','ROLE_USER'])
+@Secured(['IS_AUTHENTICATED_ANONYMOUSLY'])
 class UserController {
     def registerService
     def mailService
 
     def index() {
 
-
-        def sign = registerService.serviceMethod(params, request)
-        if (sign == 1) {
+        def sign = registerService.serviceMethod(params,request)
+      /*  if (sign == 1) {
             redirect(url:"/")
         } else {
             flash.message2="Username already taken"
-            redirect(url: "/")
-        }
+            redirect(url:s "/")
+        }*/
 
     }
 
@@ -57,11 +56,11 @@ class UserController {
         println "+++++++++]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]"
         println params.email
         Users user=Users.findByEmail(params.email)
-        println user.email
+        println "{{{{{{{{{{{{${user.email}"
         String link=createLink(controller:'User' ,action:'resetpass' ,params:[email:user.email],absolute: true)
          mailService.sendMail( {
             to "${user.email}"
-            subject "Hello .Change password link "
+            subject "Hello${user.username} .Change password link "
             text link
         })
     }

@@ -5,12 +5,13 @@ import grails.transaction.Transactional
 
 @Transactional
 class RegisterService {
+    def springSecurityService
 
     def serviceMethod(params,request) {
 
         println params
 
-        /*if(params.confirm_password.equals(params.password)==true){
+        if(params.confirm_password.equals(params.password)==true){
             String email = params.email
             String username = params.username
             def dec = request.getFile('photo')
@@ -34,7 +35,13 @@ class RegisterService {
             {
                  photo1="default.jpg"
             }
-            Users user = new Users(email: email, username: username, password: password, fName: firstname, lName: lastname, admin: false, active: true,photo:photo1)
+            def userRole=Role.findOrSaveWhere(authority: 'ROLE_USER')
+            def user = Users.findOrSaveWhere(email: email, username: username, password: password, fName: firstname, lName: lastname, admin: false, active: true,photo:photo1)
+            if(!user.authorities.contains(userRole)){
+                UsersRole.create(user,userRole,true)
+                println "inside"
+            }
+
             if(user.validate()){
                 user.save(flush: true, failOnError: true, validate: false)
                 return 1
@@ -47,7 +54,7 @@ class RegisterService {
         }
         else{
             return 0
-        }*/
+        }
 
     }
 

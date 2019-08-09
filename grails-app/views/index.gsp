@@ -243,7 +243,6 @@
 <script>
     function changepass(){
         var email=$('#e').val();
-
         $.ajax({
             "url": resetPasswordUrl,
             "type": "get",
@@ -252,7 +251,6 @@
                 document.getElementById("test").innerHTML="SUCCESS"
             }
         });
-
     }
 </script>
 </body>
