@@ -1,5 +1,5 @@
 <g:each var="sub" in="${subs}" status="i">
-    <div class="panel-body">
+
     <g:if test="${i < 5}">
 <g:link controller="topic" action="topicshow" params="[id: sub.id]">${sub.topic.name}</g:link>
 <br>
@@ -54,5 +54,5 @@
     </g:form>
 </g:else>
     </g:if>
-    </div>
+
 </g:each>

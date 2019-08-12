@@ -4,25 +4,15 @@
     <meta name="layout" content="mainlayout"/>
     <script>
         var url = "${createLink(controller:'Resources', action:'search')}";
-        var url1= "${createLink(controller:'Dashboard', action:'dashboard')}";
-       /* var box=function(){
-            alert("in dashboard");
-        }*/
-      /* var showsubs=function(){
-           $.ajax({
-               "url": url1,
-               "type": "get",
-              /!* "data": ,*!/
-               success: function () {
-                  /!* document.getElementById("test").innerHTML = "SUCCESS"*!/
-               }
-           });
-       }
-        $(document).ready(function(){
-           showcontent();
-        });*/
+        var url1= "${createLink(controller:'showsub', action:'showsub')}";
+        var url2= "${createLink(controller:'showtrending', action:'showtrending')}";
+
+
+
+
     </script>
     <asset:javascript src="search.js"/>
+    <asset:javascript src="check.js"/>
 </head>
 <body >
 <br>
@@ -32,8 +22,11 @@
     <p style="color:red">${flash.message3}</p>
     <p id="test1"></p>
     <g:render template="userbox" model="['userdata':userdata]"/>
-    <g:render template="subbox" model="['subs':subs,'userdata':userdata,'countofsubs':countofsubs,'countofposts':countofposts]"/>
-    <g:render template="topbox" model="['toptopics':toptopics,'toptopicpost':toptopicpost,'toptopicsub':toptopicsub,'tids':tids]"/>
+%{--    <div id="showsubscriptions"></div>--}%
+        <g:render template="subbox"/>
+    <g:render template="topbox"/>
+%{--    <g:render template="subbox" model="['subs':subs,'userdata':userdata,'countofsubs':countofsubs,'countofposts':countofposts]"/>--}%
+%{--    <g:render template="topbox" model="['toptopics':toptopics,'toptopicpost':toptopicpost,'toptopicsub':toptopicsub,'tids':tids]"/>--}%
 </div>
 
 %{--RIGHT SIDE-----------------------------------}%

@@ -15,11 +15,18 @@ class DashboardController {
         Integer subcount=dashboardService.subscriptionCountMethod(springSecurityService.currentUser?.email)
         List subs=dashboardService.subscriptions(springSecurityService.currentUser?.email)
         if(!subs){
+            render(view: 'dashboard',model: [subs:[],userdata:user,topcount:topcount,subcounts: subcount,resources: []])
+        }
+        else{
+            List resources=readingService.displayunread(springSecurityService.currentUser?.username)
+            render(view: 'dashboard',model: [subs:subs,userdata:user,topcount:topcount,subcounts: subcount,resources: resources])
+        }
+        /*List subs=dashboardService.subscriptions(springSecurityService.currentUser?.email)
+        if(!subs){
             List<Topic> toptopic=dashboardService.toptopics()
             List<Integer> toptopicposts=dashboardService.toptopicposts(toptopic)
             List<Integer> toptopicsubs=dashboardService.toptopicsubs(toptopic)
             render(view: 'dashboard',model: [userdata:user,tids:[],topcount:topcount,subcounts:subcount,subs:[],countofsubs:[],countofposts:[],toptopics:toptopic,toptopicpost:toptopicposts,toptopicsub:toptopicsubs,resources:[]])
-
         }
         else{
             List tids=subs.collect{it.topic.id}
@@ -33,7 +40,7 @@ class DashboardController {
             render(view: 'dashboard',model: [userdata:user,tids:tids,topcount:topcount,subcounts:subcount,subs:subs,countofsubs:countofsub,countofposts:countofpost,toptopics:toptopic,toptopicpost:toptopicposts,toptopicsub:toptopicsubs,resources:resources])
 
 
-        }
+        }*/
        }
 
     def viewprofile() {

@@ -11,7 +11,6 @@
         <g:else>
             <g:link controller="Subscription" action="subscribe" params="[id: topic.id,page:'dashboard']">Subscribe</g:link> &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}
             <br>
-
         </g:else>
     %{-- <a href="#" >Unsubscribe</a> &nbsp &nbsp &nbsp Subscription: &nbsp ${toptopicsub.get(i)} &nbsp &nbsp Posts:${toptopicpost.get(i)}
      <br>--}%

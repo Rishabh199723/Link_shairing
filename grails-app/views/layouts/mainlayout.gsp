@@ -24,7 +24,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script>
-    var url1="${createLink(controller:'Topic',action:'topics')}"
+    var url3="${createLink(controller:'Topic',action:'topics')}"
 </script>
     <script>
     $(document).ready(function(){
@@ -32,15 +32,17 @@
             e.preventDefault();
             var tname=$("#topicName").val()
             var visibility=$("#visibility").val()
-            console.log(tname)
-            console.log(visibility)
             $.ajax({
-                "url": url1,
+                "url": url3,
                 "type": "POST",
                 "data": {tname: tname, visibility:visibility},
                 success: function (resp) {
                     $("#createtopic").modal('hide');
+                    showsubs();
+                    showtrending();
+                    showuserinfo();
                     document.getElementById("test1").innerHTML = resp
+
                 }
             });
         });
