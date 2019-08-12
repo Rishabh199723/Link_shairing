@@ -6,9 +6,7 @@
         var url = "${createLink(controller:'Resources', action:'search')}";
         var url1= "${createLink(controller:'showsub', action:'showsub')}";
         var url2= "${createLink(controller:'showtrending', action:'showtrending')}";
-
-
-
+        var url5= "${createLink(controller:'userinfo', action:'showuserinfo')}";
 
     </script>
     <asset:javascript src="search.js"/>
@@ -21,7 +19,7 @@
 <div class="col-md-6">
     <p style="color:red">${flash.message3}</p>
     <p id="test1"></p>
-    <g:render template="userbox" model="['userdata':userdata]"/>
+    <g:render template="userbox" />
 %{--    <div id="showsubscriptions"></div>--}%
         <g:render template="subbox"/>
     <g:render template="topbox"/>
