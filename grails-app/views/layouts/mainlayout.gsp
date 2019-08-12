@@ -23,7 +23,51 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<g:layoutHead/>
+    <script>
+    var url1="${createLink(controller:'Topic',action:'topics')}"
+</script>
+    <script>
+    $(document).ready(function(){
+        $("#topicCreate").on('submit',function(e){
+            e.preventDefault();
+            var tname=$("#topicName").val()
+            var visibility=$("#visibility").val()
+            console.log(tname)
+            console.log(visibility)
+            $.ajax({
+                "url": url1,
+                "type": "POST",
+                "data": {tname: tname, visibility:visibility},
+                success: function (resp) {
+                    $("#createtopic").modal('hide');
+                    document.getElementById("test1").innerHTML = resp
+                }
+            });
+        });
+
+    });
+  /*  var createtopic=function(){
+        e.preventDefault()
+        $("#topicCreate").on('submit',function(){
+
+         });
+         var tname=$("#topicName").val()
+        var visibility=$("#visibility").val()
+        console.log(tname)
+        console.log(visibility)
+        $.ajax({
+            "url": url1,
+            "type": "POST",
+            "data": {tname: tname, resourceId: resourceId, value: value},
+            success: function () {
+                document.getElementById("test").innerHTML = "SUCCESS"
+            }
+        });
+    }*/
+
+
+</script>
+    <g:layoutHead/>
 </head>
 
 <body>
@@ -68,18 +112,18 @@
                                 <h4 class="modal-title" >Create Topic</h4>
                             </div>
                             <div class="modal-body">
-                                <g:form class="form-horizontal" controller="Topic" action="topics" name="topicCreate">
+                                <g:form class="form-horizontal"  id="topicCreate" name="topicCreate">
                                     <div class="form-group">
                                         <div class="col-sm-2 control-label">Name</div>
                                         <div class="col-sm-10">
-                                            <input type="text" required="true" name="topicName" placeholder="Topic Name"
+                                            <input type="text" required="true" id="topicName" name="topicName" placeholder="Topic Name"
                                                    class="form-control col-sm-8" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-2 control-label">visibility</div>
                                         <div class="col-sm-10">
-                                            <g:select name="visibility" from="${['PUBLIC' , 'PRIVATE']}"
+                                            <g:select id="visibility" name="visibility" from="${['PUBLIC' , 'PRIVATE']}"
                                                       class="dropdown-toggle btn btn-default col-sm-8"  />
                                         </div>
                                     </div>
@@ -128,7 +172,7 @@
                                     </div>
                                 </g:form>
 
-                            </div>    @Secured(['ROLE_ADMIN','ROLE_USER'])
+                            </div>
                         </div>
                     </div></div>
 
@@ -266,7 +310,7 @@
                             <div class="modal-body">
                                 <ul>
                                     <g:each in="${subs}" var="sub" status="i">
-                                        <g:if test="${sub.topic.createdBy.username==session.uname}">
+                                        <g:if test="${sub.topic.createdBy.username==userdata.username}">
                                             <g:link controller="topic" action="topicshow" params="[id:sub.id]"><li>${sub.topic.name}</li></g:link>
                                         </g:if>
                                     </g:each>

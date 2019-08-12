@@ -286,7 +286,8 @@
                            autofocus=""/>
                     <br>
                     <input type="text" id="uname" class="form-control" name="username" placeholder="Username"
-                           required="true" autofocus=""/>
+                           required="true
+" autofocus=""/>
                     <br>
                     <input type="password" class="form-control" id="password1" name="password" placeholder="Password"
                            required="true" onkeyup='pass();'/>

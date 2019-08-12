@@ -39,13 +39,15 @@ class TopicController {
     def topics() {
         println "IN TOPIC ==============================="
 
-        Topic t = Topic.findByName(params.topicName)
+        Topic t = Topic.findByName(params.tname)
         if (t) {
-            flash.message3 = "Topic already created"
-            redirect(controller: "Dashboard", action: "dashboard")
+            //flash.message3 = "Topic already created"
+            render("Already")
+//            redirect(controller: "Dashboard", action: "dashboard")
         } else {
             topicService.serviceMethod(springSecurityService.currentUser?.email, params)
-            redirect(controller: "Dashboard", action: "dashboard")
+            render("Success")
+//            redirect(controller: "Dashboard", action: "dashboard")
 
         }
 

@@ -56,7 +56,6 @@ class UserController {
     def passreset() {
         println params.email
         Users user=Users.findByEmail(params.email)
-//        println "{{{{{{{{{{{{${user.email}"
         def num=Math.random()
         def num1=num*1000000
         def token=(int)num1
