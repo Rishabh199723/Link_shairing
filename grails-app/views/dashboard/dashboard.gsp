@@ -7,15 +7,35 @@
         var url1= "${createLink(controller:'showsub', action:'showsub')}";
         var url2= "${createLink(controller:'showtrending', action:'showtrending')}";
         var url5= "${createLink(controller:'userinfo', action:'showuserinfo')}";
-        var url6="${createLink(controller:'dashboard', action:'getsublist')}";
+        var url6="${createLink(controller:'dashboard', action:'gettopiclist')}";
+        var url7="${createLink(controller:'dashboard', action:'getsublist')}";
         $(document).ready(function(){
             $("#showtopics").on("show.bs.modal",function(){
                 $.ajax({
                     "url": url6,
                     "type": "get",
                     success: function (res) {
-                    console.log(res.topicmodal);
-                    $("#showtopicmodal").html(res.topicmodal)
+                        /* $("#showtopicmodal").html(res.topicmodal)*/
+                        var element="";
+                        element +="<ul>";
+                        var i=0,item;
+                        while(item = res[i++]){
+                            element +="<li>"+ item+"</li>"
+                        }
+                        element+="</ul>"
+                         $("#showtopicmodal").html(element)
+                    }
+                });
+            });
+
+
+            $("#showsubscriptions").on("show.bs.modal",function(){
+                $.ajax({
+                    "url": url7,
+                    "type": "get",
+                    success: function (res) {
+                        console.log(res.submodal);
+                        $("#showsubscriptionmodal").html(res.submodal)
                     }
                 });
             });

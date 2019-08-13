@@ -10,12 +10,23 @@ class DashboardController {
     def readingService
     def index() {}
 
-    def getsublist(){
+    def gettopiclist(){
         Users user = Users.findByEmail(springSecurityService.currentUser?.email)
         List subs=dashboardService.subscriptions(springSecurityService.currentUser?.email)
-        String template= g.render( template:"/dashboard/topicmodal", model:[subs:subs,userdata:user])
-        render(["topicmodal":template] as JSON)
+        List topname=subs.collect{it.topic.name}
+        def list=topname as grails.converters.JSON
+        println(topname)
+        println(list)
+       /* String template= g.render( template:"/dashboard/topicmodal", model:[subs:subs,userdata:user])*/
+        render(list)
     }
+
+    def getsublist(){
+        List subs=dashboardService.subscriptions(springSecurityService.currentUser?.email)
+        String template= g.render( template:"/dashboard/subscriptionmodal", model:[subs:subs])
+        render(["submodal":template] as JSON)
+    }
+
 
     def dashboard() {
         Users user = Users.findByEmail(springSecurityService.currentUser?.email)

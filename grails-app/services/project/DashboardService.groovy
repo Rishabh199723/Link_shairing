@@ -21,7 +21,7 @@ class DashboardService {
     def subscriptions(String name) {
 
         Users user = Users.findByEmail(name)
-        user.subscribed.sort { b, a -> a.topic.lastUpdated <=> b.topic.lastUpdated }
+        return user.subscribed.sort { b, a -> a.topic.lastUpdated <=> b.topic.lastUpdated }
     }
 
     def subcount(List<Topic> topicList) {

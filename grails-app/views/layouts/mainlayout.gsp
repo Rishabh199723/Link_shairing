@@ -288,12 +288,8 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title" >Topic names subscribed</h4>
                             </div>
-                            <div class="modal-body">
-                                <ul>
-                                    <g:each in="${subs}" var="sub" status="i">
-                                        <g:link controller="topic" action="topicshow" params="[id:sub.id]"><li>${sub.topic.name}</li></g:link>
-                                    </g:each>
-                                </ul>
+                            <div class="modal-body" id="showsubscriptionmodal">
+
                             </div>
                         </div>
                     </div></div>
