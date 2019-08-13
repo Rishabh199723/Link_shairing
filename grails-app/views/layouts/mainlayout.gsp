@@ -309,31 +309,13 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title" >Topic names created</h4>
                             </div>
-                            <div class="modal-body">
-                                <ul>
-                                    <g:each in="${subs}" var="sub" status="i">
-                                        <g:if test="${sub.topic.createdBy.username==userdata.username}">
-                                            <g:link controller="topic" action="topicshow" params="[id:sub.id]"><li>${sub.topic.name}</li></g:link>
-                                        </g:if>
-                                    </g:each>
-                                </ul>
+                            <div class="modal-body" id="showtopicmodal" >
                             </div>
                         </div>
                     </div></div>
 
 
-
                 <div class ="col-md-2">
-                    %{--  ${userdata.username}
-                      <li class="fa fa-caret-down"  onclick="Show()"></li>
-                      <ul class="nav nav-pills nav-stacked" id="drop" style="display:none">
-                          <li style="height:20px"><a href="#">Profile</a></li>
-                          <li style="height:20px"><a href="/UserList/userlist">Users</a></li>
-                          <li style="height:20px"><a href="/Topic/topiclist">Topic</a></li>
-                          <li style="height:20px"><a href="#">Posts</a></li>
-                          <li style="height:20px"><a href="">Logout</a></li>
-                      </ul>--}%
-
                     <div class="dropdown">
                         <a href="" data-toggle="dropdown" >${userdata.username} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                         <ul class="dropdown-menu">

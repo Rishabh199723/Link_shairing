@@ -7,6 +7,19 @@
         var url1= "${createLink(controller:'showsub', action:'showsub')}";
         var url2= "${createLink(controller:'showtrending', action:'showtrending')}";
         var url5= "${createLink(controller:'userinfo', action:'showuserinfo')}";
+        var url6="${createLink(controller:'dashboard', action:'getsublist')}";
+        $(document).ready(function(){
+            $("#showtopics").on("show.bs.modal",function(){
+                $.ajax({
+                    "url": url6,
+                    "type": "get",
+                    success: function (res) {
+                    console.log(res.topicmodal);
+                    $("#showtopicmodal").html(res.topicmodal)
+                    }
+                });
+            });
+        });
 
     </script>
     <asset:javascript src="search.js"/>
@@ -20,7 +33,6 @@
     <p style="color:red">${flash.message3}</p>
     <p id="test1"></p>
     <g:render template="userbox" />
-%{--    <div id="showsubscriptions"></div>--}%
         <g:render template="subbox"/>
     <g:render template="topbox"/>
 %{--    <g:render template="subbox" model="['subs':subs,'userdata':userdata,'countofsubs':countofsubs,'countofposts':countofposts]"/>--}%

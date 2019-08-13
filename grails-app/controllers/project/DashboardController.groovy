@@ -1,5 +1,6 @@
 package project
 
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
 @Secured(['ROLE_ADMIN','ROLE_USER'])
@@ -8,6 +9,13 @@ class DashboardController {
     def springSecurityService
     def readingService
     def index() {}
+
+    def getsublist(){
+        Users user = Users.findByEmail(springSecurityService.currentUser?.email)
+        List subs=dashboardService.subscriptions(springSecurityService.currentUser?.email)
+        String template= g.render( template:"/dashboard/topicmodal", model:[subs:subs,userdata:user])
+        render(["topicmodal":template] as JSON)
+    }
 
     def dashboard() {
         Users user = Users.findByEmail(springSecurityService.currentUser?.email)
